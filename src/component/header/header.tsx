@@ -1,11 +1,19 @@
 import * as React from 'react';
 import './header.scss'
 
-class Header extends React.Component {
+interface IProps {
+    children: any
+}
+
+class Header extends React.Component<IProps, {}> {
+    constructor(props: IProps) {
+        super(props)
+    }
+
     public render() {
         return (
-            <div className='public-header'>
-                公共头部
+            <div className="public-header">
+                {this.props.children}
             </div>
         )
     }

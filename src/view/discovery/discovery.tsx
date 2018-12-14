@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Header from '../../component/header/header'
-// import BScroll from 'better-scroll'
+import Slider from '../../base/slider/slider'
+import SearchBox from '../../base/searct-box/search-box'
 import {getBanner} from "../../api/discovery";
 
-
-class Discovery extends React.Component<{}, {}> {
+class Discovery extends React.Component {
     public componentWillMount() {
         this._getBanner()
     }
@@ -12,7 +12,10 @@ class Discovery extends React.Component<{}, {}> {
     public render() {
         return (
             <div className='discovery'>
-                <Header/>
+                <Header>
+                    <SearchBox/>
+                </Header>
+                <Slider/>
             </div>
         )
     }
