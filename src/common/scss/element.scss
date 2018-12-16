@@ -1,0 +1,14 @@
+@import "variable";
+
+@mixin border-1px-top($color:$border-1px, $position:relative) {
+  position: $position;
+  &:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-top: 1px solid $color;
+  }
+}

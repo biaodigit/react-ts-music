@@ -1,0 +1,10 @@
+@import "variable";
+
+@mixin wrapper($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem) {
+  position: $position;
+  width: $width;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+}
+

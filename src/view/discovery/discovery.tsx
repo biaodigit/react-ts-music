@@ -3,6 +3,7 @@ import Header from '../../component/header/header'
 import Slider from '../../base/slider/slider'
 import SearchBox from '../../base/searct-box/search-box'
 import {getBanner} from "../../api/discovery";
+import './discovery.scss'
 
 class Discovery extends React.Component {
     public componentWillMount() {
