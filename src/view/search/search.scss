@@ -1,0 +1,11 @@
+@import "../../common/scss/common";
+
+.search-wrapper {
+  @include wrapper;
+  .right-wrapper{
+    .cancel {
+      color: $color-background;
+      font-size: 14px;
+    }
+  }
+}
