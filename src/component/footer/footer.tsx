@@ -21,17 +21,9 @@ class Footer extends React.Component {
 
     private calRoute(path: string): string {
         if (path === window.location.pathname) {
-            if (path === '/') {
-                return require('./images/discover_active.png')
-            } else {
-                return require(`./images${path}_active.png`)
-            }
+            return require(`./images${path}_active.png`)
         } else {
-            if (path === '/') {
-                return require(`./images/discover.png`)
-            } else {
-                return require(`./images${path}.png`)
-            }
+            return require(`./images${path}.png`)
         }
     }
 

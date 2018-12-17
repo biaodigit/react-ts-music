@@ -1,6 +1,6 @@
 export const tabs = [
     {
-        path: '/',
+        path: '/discovery',
         text: '发现'
     },
     {
