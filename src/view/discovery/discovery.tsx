@@ -12,9 +12,15 @@ class Discovery extends React.Component {
 
     public render() {
         return (
-            <div className='discovery'>
+            <div className='discovery-wrapper'>
                 <Header>
-                    <SearchBox/>
+                    <div className='left-wrapper'>
+                        {/*<img className='left-icon'/>*/}
+                    </div>
+                    <SearchBox {...this.props}/>
+                    <div className='right-wrapper'>
+                        <img src={require('./images/player.png')} className='right-icon'/>
+                    </div>
                 </Header>
                 <Slider/>
             </div>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import './header.scss'
 
 interface IProps {
-    children: any
+    children: object
 }
 
 class Header extends React.Component<IProps, {}> {
@@ -12,7 +12,7 @@ class Header extends React.Component<IProps, {}> {
 
     public render() {
         return (
-            <div className="public-header">
+            <div className="header-wrapper">
                 {this.props.children}
             </div>
         )

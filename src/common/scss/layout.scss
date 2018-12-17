@@ -8,3 +8,10 @@
   bottom: $bottom;
 }
 
+@mixin icon-wrapper() {
+  flex: 0 0 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
