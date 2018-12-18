@@ -3,7 +3,7 @@ import * as React from 'react'
 class Mine extends React.Component {
     public render() {
         return (
-            <div className='mine'>
+            <div className='mine-container'>
                 我的
             </div>
         )

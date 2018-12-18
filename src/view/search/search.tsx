@@ -1,31 +1,32 @@
 import * as React from 'react';
-import Header from '../../component/header/header'
-import SearchBox from '../../base/searct-box/search-box'
+import Header from '../../component/header/header';
+import SearchBox from '../../base/searct-box/search-box';
+import * as searchActions from '../../actions/search';
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
 import './search.scss'
 
 
-interface IProps {
-    history?: any,
-    location?: any,
-    match?: any,
-    staticContext?: any
+interface Props {
+    searchState: boolean,
+    modifySearch: () => void
 }
 
-class Search extends React.Component<IProps, {}> {
-    constructor(props: IProps) {
+class Search extends React.Component<Props, {}> {
+    constructor(props: Props) {
         super(props)
     }
 
     public goBack = () => {
-       this.props.history.goBack()
+        this.props.modifySearch()
     }
 
     public render() {
         return (
-            <div className='search-wrapper'>
+            <div className={['search-container', this.calSearchHidden()].join(' ')}>
                 <Header>
                     <SearchBox {...this.props}/>
-                    <div onClick={this.goBack} className='right-wrapper'>
+                    <div onClick={this.goBack} className='right-container'>
                         <span className="cancel">取消</span>
                     </div>
                 </Header>
@@ -33,6 +34,14 @@ class Search extends React.Component<IProps, {}> {
             </div>
         )
     }
+
+    private calSearchHidden = () => {
+        return (!this.props.searchState ? 'hidden' : '')
+    }
 }
 
-export default Search
+
+export default connect(
+    (state:any) => ({searchState: state.searchState}),
+    (dispatch) => bindActionCreators(searchActions, dispatch)
+)(Search)

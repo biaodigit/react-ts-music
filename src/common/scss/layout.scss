@@ -1,14 +1,16 @@
 @import "variable";
 
-@mixin wrapper($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem) {
+@mixin container($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem) {
   position: $position;
   width: $width;
   top: $top;
   left: $left;
   bottom: $bottom;
+  background-color: $color-background;
+  font-size: 0;
 }
 
-@mixin icon-wrapper() {
+@mixin icon-container() {
   flex: 0 0 45px;
   display: flex;
   align-items: center;

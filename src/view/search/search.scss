@@ -1,11 +1,15 @@
 @import "../../common/scss/common";
 
-.search-wrapper {
-  @include wrapper;
-  .right-wrapper{
+.search-container {
+  @include container;
+  .right-container{
     .cancel {
       color: $color-background;
       font-size: 14px;
     }
   }
+}
+
+.hidden {
+  display: none;
 }

@@ -18,9 +18,9 @@ const Routes = () => (
                     <Route path='/mine' component={Mine}/>
                     <Route path='/singer' component={Singer}/>
                     <Route path='/account' component={Account}/>
-                    <Route path='/search' component={Search}/>
                     <Redirect to='/discovery'/>
                 </Switch>
+                <Search/>
                 <Footer/>
             </div>
         </BrowserRouter>

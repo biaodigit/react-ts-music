@@ -1,18 +1,18 @@
 import * as React from 'react';
 import './header.scss'
 
-interface IProps {
+interface Props {
     children: object
 }
 
-class Header extends React.Component<IProps, {}> {
-    constructor(props: IProps) {
+class Header extends React.Component<Props, {}> {
+    constructor(props: Props) {
         super(props)
     }
 
     public render() {
         return (
-            <div className="header-wrapper">
+            <div className="header-container">
                 {this.props.children}
             </div>
         )
