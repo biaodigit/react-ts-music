@@ -1,11 +1,11 @@
 import * as constants from '../constants/index';
 
-export interface ModifySearchState {
-    type: constants.MODIFY_SEARCH_STATE
+export interface ShowSearch {
+    type: constants.SHOW_SEARCH
 }
 
-export function modifySearch(): ModifySearchState {
+export function showSearch(): ShowSearch {
     return {
-        type: constants.MODIFY_SEARCH_STATE
+        type: constants.SHOW_SEARCH
     }
 }

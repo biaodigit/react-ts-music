@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
-import {searchState} from "./search";
+import {searchIsShow} from "./search";
+import {disNav} from "./discovery";
 
 export default combineReducers({
-    searchState
+    disNav,
+    searchIsShow
 })

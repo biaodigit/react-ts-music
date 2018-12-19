@@ -1,0 +1,5 @@
+@import "../../../common/scss/common";
+
+.radio-container {
+  @include container($top:1.68rem)
+}

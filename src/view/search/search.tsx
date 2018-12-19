@@ -8,8 +8,8 @@ import './search.scss'
 
 
 interface Props {
-    searchState: boolean,
-    modifySearch: () => void
+    searchIsShow: boolean,
+    showSearch: () => void
 }
 
 class Search extends React.Component<Props, {}> {
@@ -18,7 +18,7 @@ class Search extends React.Component<Props, {}> {
     }
 
     public goBack = () => {
-        this.props.modifySearch()
+        this.props.showSearch()
     }
 
     public render() {
@@ -36,12 +36,12 @@ class Search extends React.Component<Props, {}> {
     }
 
     private calSearchHidden = () => {
-        return (!this.props.searchState ? 'hidden' : '')
+        return (!this.props.searchIsShow ? 'hidden' : '')
     }
 }
 
 
 export default connect(
-    (state:any) => ({searchState: state.searchState}),
+    (state:any) => ({searchIsShow: state.searchIsShow}),
     (dispatch) => bindActionCreators(searchActions, dispatch)
 )(Search)

@@ -1,9 +1,9 @@
-import {ModifySearchState} from "../actions/search";
-import {MODIFY_SEARCH_STATE} from "../constants";
+import {ShowSearch} from "../actions/search";
+import {SHOW_SEARCH} from "../constants";
 
-export function searchState(state: boolean, action: ModifySearchState): boolean {
+export function searchIsShow(state: boolean, action: ShowSearch): boolean {
     switch (action.type) {
-        case MODIFY_SEARCH_STATE:
+        case SHOW_SEARCH:
             return !state;
         default:
             return false

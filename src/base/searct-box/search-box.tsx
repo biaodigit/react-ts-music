@@ -5,8 +5,8 @@ import {bindActionCreators} from "redux";
 import './search-box.scss'
 
 interface Props {
-    searchState: boolean,
-    modifySearch: () => void
+    searchIsShow: boolean,
+    showSearch: () => void
 }
 
 class SearchBox extends React.Component<Props, {}> {
@@ -15,8 +15,8 @@ class SearchBox extends React.Component<Props, {}> {
     }
 
     public goSearch = () => {
-        if (!this.props.searchState) {
-            this.props.modifySearch();
+        if (!this.props.searchIsShow) {
+            this.props.showSearch();
         }
 
     }
@@ -25,7 +25,7 @@ class SearchBox extends React.Component<Props, {}> {
         return (
             <div className='search-box'>
                 <i className='icon-search'/>
-                <input onFocus={this.goSearch} className='box' autoFocus={this.props.searchState}
+                <input onFocus={this.goSearch} className='box' autoFocus={this.props.searchIsShow}
                        placeholder='搜索你想听的歌曲吧～'/>
             </div>
         )
@@ -33,6 +33,6 @@ class SearchBox extends React.Component<Props, {}> {
 }
 
 export default connect(
-    (state:any) => ({searchState: state.searchState}),
+    (state:any) => ({searchIsShow: state.searchIsShow}),
     (dispatch) => bindActionCreators(searchAction, dispatch)
 )(SearchBox);
