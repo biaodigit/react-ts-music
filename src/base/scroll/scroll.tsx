@@ -17,25 +17,24 @@ class Scroll extends React.Component<PropTypes, any> {
         refreshDelay: 20,
         scrollX: false,
         scrollY: true
-    }
+    };
 
     private scroll: any;
     private scrollContainer: any;
 
     constructor(props: PropTypes) {
-        super(props)
+        super(props);
 
         this.scrollContainer = React.createRef()
     }
 
     public componentDidMount() {
         setTimeout(() => {
-            this._initScroll()
+            this.initScroll()
         }, 20)
     }
 
     public shouldComponentUpdate(newProps: any, newState: any): boolean {
-        console.log(newProps)
         if (newProps) {
             setTimeout(() => {
                 this.refresh()
@@ -52,7 +51,7 @@ class Scroll extends React.Component<PropTypes, any> {
         )
     }
 
-    private _initScroll() {
+    private initScroll() {
         this.scroll = new BScroll(this.scrollContainer.current, {
             click: this.props.click,
             probeType: this.props.probeType

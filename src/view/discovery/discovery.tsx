@@ -5,22 +5,17 @@ import Header from '../../component/header/header'
 import SearchBox from '../../base/searct-box/search-box'
 import Recommend from './recommend/recommend'
 import Radio from './radio/radio'
-import {getBanner} from "../../api/discovery";
+import {DiscoveryPropsType} from "./PropsType";
 import * as discoveryActions from '../../actions/discovery'
 import './discovery.scss'
 
-interface Props {
-    disNav: string,
+interface PropsType extends DiscoveryPropsType{
     switchDisNav: (text: string) => void
 }
 
-class Discovery extends React.Component<Props, any> {
-    constructor(props: Props) {
+class Discovery extends React.Component<PropsType, any> {
+    constructor(props: PropsType ) {
         super(props)
-    }
-
-    public componentWillMount() {
-        this._getBanner()
     }
 
     public render() {
@@ -53,12 +48,6 @@ class Discovery extends React.Component<Props, any> {
 
     private switchNav = (text: string) => {
         this.props.switchDisNav(text)
-    }
-
-    private _getBanner = () => {
-        getBanner().then((res) => {
-            console.log(res)
-        })
     }
 }
 

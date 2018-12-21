@@ -1,19 +1,75 @@
 import * as React from 'react';
+import Scroll from '../../../base/scroll/scroll'
+import {DiscoveryPropsType} from "../PropsType";
 import './radio.scss'
 
-interface Props {
-    disNav: string
+interface PropsType extends DiscoveryPropsType{
 }
 
-class Radio extends React.Component<Props, any> {
-    constructor(props: Props) {
+class Radio extends React.Component<PropsType, any> {
+    constructor(props: PropsType) {
         super(props)
     }
 
     public render() {
         return (
             <div className={['radio-container', this.props.disNav === 'radio' ? '' : 'hidden'].join(' ')}>
-                主播电台
+                <Scroll content={'radio-content'}>
+                    <div>
+                        主播电台
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                        <p>推荐</p>
+                    </div>
+                </Scroll>
             </div>
         )
     }

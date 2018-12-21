@@ -1,6 +1,5 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
-  "interface-name": [true, "never-prefix"],
   "defaultSeverity": "warning",
   "rules": {
     "ordered-imports": false,

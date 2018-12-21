@@ -6,6 +6,7 @@
   width: 100%;
   height: 1rem;
   @include border-1px-top($position: fixed);
+  z-index: 999;
   .tab {
     display: flex;
     flex: 1;

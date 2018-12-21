@@ -1,5 +1,14 @@
 @import "../../../common/scss/common";
 
 .radio-container {
-  @include container($top:1.68rem)
+  @include container($top:1.68rem);
+  .radio-content {
+    height: 100%;
+    font-size: $font-size-large;
+    overflow: hidden;
+  }
+}
+
+.hidden {
+  display: none;
 }
