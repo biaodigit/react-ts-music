@@ -27,11 +27,14 @@ class Slider extends React.Component<PropsType, any> {
         this.sliderGroup = React.createRef();
     }
 
-    public componentDidMount() {
-        setTimeout(() => {
-            this.setSliderWidth()
-            // this.initSlider()
-        }, 10)
+    public shouldComponentUpdate(newProps: PropsType): boolean {
+        if (newProps.data.length) {
+            setTimeout(() => {
+                this.setSliderWidth()
+                // this.initSlider()
+            })
+        }
+        return true
     }
 
     public render() {
@@ -40,7 +43,7 @@ class Slider extends React.Component<PropsType, any> {
             <div ref={this.sliderContainer} className='slider'>
                 <div ref={this.sliderGroup} className='slider-group'>
                     {
-                        data && data.length > 0 && data.map((item: any, index: number) => (
+                        data.map((item: any, index: number) => (
                             <div key={index}>
                                 <a>
                                     <img src={item.imageUrl}/>
