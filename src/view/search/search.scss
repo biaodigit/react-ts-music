@@ -1,7 +1,7 @@
 @import "../../common/scss/common";
 
 .search-container {
-  @include container;
+  @include box-container;
   .right-container{
     .cancel {
       color: $color-background;
@@ -11,5 +11,5 @@
 }
 
 .hidden {
-  display: none;
+  @include box-hidden;
 }

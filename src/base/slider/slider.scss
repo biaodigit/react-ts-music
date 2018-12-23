@@ -28,4 +28,25 @@
       }
     }
   }
+  .dots-group {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0.4rem;
+    transform: translateZ(1px);
+    text-align: center;
+    font-size: 0;
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background-color: $color-background;
+    }
+    .active {
+      width: 20px;
+      border-radius: 5px;
+    }
+  }
 }

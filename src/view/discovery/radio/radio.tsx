@@ -3,11 +3,8 @@ import Scroll from '../../../base/scroll/scroll'
 import {DiscoveryPropsType} from "../PropsType";
 import './radio.scss'
 
-interface PropsType extends DiscoveryPropsType{
-}
-
-class Radio extends React.Component<PropsType, any> {
-    constructor(props: PropsType) {
+class Radio extends React.Component<DiscoveryPropsType, any> {
+    constructor(props: DiscoveryPropsType) {
         super(props)
     }
 

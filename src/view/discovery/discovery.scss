@@ -1,7 +1,7 @@
 @import "../../common/scss/common";
 
 .discovery-container {
-  @include container;
+  @include box-container;
   .nav-container {
     display: flex;
     position: relative;

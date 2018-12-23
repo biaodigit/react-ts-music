@@ -5,16 +5,13 @@ import {DiscoveryPropsType} from "../PropsType";
 import {getBanner} from "../../../api/discovery";
 import './recommend.scss'
 
-interface PropsType extends DiscoveryPropsType {
-}
-
 interface StateType {
     sliderData: object[]
 }
 
 
-class Recommend extends React.Component<PropsType, StateType> {
-    constructor(props: PropsType, state: StateType) {
+class Recommend extends React.Component<DiscoveryPropsType, StateType> {
+    constructor(props: DiscoveryPropsType, state: StateType) {
         super(props)
 
         this.state = {
@@ -23,7 +20,7 @@ class Recommend extends React.Component<PropsType, StateType> {
     }
 
     public componentWillMount() {
-        this._getBanner()
+        this.getRecBanner()
     }
 
     public render() {
@@ -32,9 +29,12 @@ class Recommend extends React.Component<PropsType, StateType> {
                 <Scroll content={'recommend-content'}>
                     <div>
                         <div className='slider-container'>
-                            <div className='slider-content'>
-                                <Slider data={this.state.sliderData}/>
-                            </div>
+                            {
+                                this.state.sliderData.length &&
+                                <div className='slider-content'>
+                                    <Slider data={this.state.sliderData}/>
+                                </div>
+                            }
                         </div>
                     </div>
                 </Scroll>
@@ -42,7 +42,7 @@ class Recommend extends React.Component<PropsType, StateType> {
         )
     }
 
-    private _getBanner() {
+    private getRecBanner = () => {
         getBanner().then((res) => {
             if (res.data.code === 200) {
                 this.setState({

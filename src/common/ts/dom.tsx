@@ -1,6 +1,7 @@
 export function addClass(el: any, className: string) {
-    if (hasClass(el, className)) return;
-
+    if (hasClass(el, className)) {
+        return;
+    }
     el.classList.add(className)
 }
 
