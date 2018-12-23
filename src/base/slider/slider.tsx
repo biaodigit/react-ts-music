@@ -53,13 +53,31 @@ class Slider extends React.Component<PropsType, StateType> {
 
             clearTimeout(this.resizeTimer);
             this.resizeTimer = setTimeout(() => {
-                if(!this.slider.isInTransition && this.props.autoPlay){
+                if (!this.slider.isInTransition && this.props.autoPlay) {
                     this.play()
                 }
                 this.onScrollEnd();
                 this.refresh();
             }, 60)
         })
+    }
+
+    public shouldComponentUpdate(newProps: PropsType): boolean {
+        if (this.slider.getCurrentPage().pageX !== this.state.currentPageIndex) {
+            this.slider.enable();
+            let index = this.slider.getCurrentPage().pageX;
+            if (index > this.props.data.length - 1) {
+                index = index % this.props.data.length
+            }
+            this.slider.goToPage(index, 0, 0);
+            this.setState({
+                currentPageIndex: index
+            });
+            if (this.props.autoPlay) {
+                this.play()
+            }
+        }
+        return true
     }
 
 
