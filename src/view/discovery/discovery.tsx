@@ -1,4 +1,7 @@
 import * as React from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from "redux";
+import * as footerActions from '../../actions/footer'
 import Header from '../../component/header/header'
 import SearchBox from '../../base/searct-box/search-box'
 import Recommend from './recommend/recommend'
@@ -7,12 +10,14 @@ import {DiscoveryPropsType} from "./PropsType";
 import './discovery.scss'
 
 interface PropsType extends DiscoveryPropsType {
-    switchDisNav: (text: string) => void
+    switchNav: (path: string) => void
 }
 
 interface StateType {
     disNav: string
 }
+
+const path:string = '/discovery'
 
 class Discovery extends React.Component<PropsType, StateType> {
     constructor(props: PropsType, state: StateType) {
@@ -21,6 +26,10 @@ class Discovery extends React.Component<PropsType, StateType> {
         this.state = {
             disNav: 'recommend'
         }
+    }
+
+    public componentDidMount() {
+        this.props.switchNav(path)
     }
 
     public render() {
@@ -59,9 +68,7 @@ class Discovery extends React.Component<PropsType, StateType> {
     }
 }
 
-export default Discovery
-
-// export default connect(
-//     (state: any) => ({disNav: state.disNav}),
-//     (dispatch) => bindActionCreators(discoveryActions, dispatch)
-// )(Discovery);
+export default connect(
+    null,
+    (dispatch) => bindActionCreators(footerActions, dispatch)
+)(Discovery);

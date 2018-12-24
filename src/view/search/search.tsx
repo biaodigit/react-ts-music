@@ -25,6 +25,7 @@ class Search extends React.Component<Props, {}> {
         return (
             <div className={['search-container', this.calSearchHidden()].join(' ')}>
                 <Header>
+                    <div className='left-container'/>
                     <SearchBox {...this.props}/>
                     <div onClick={this.goBack} className='right-container'>
                         <span className="cancel">取消</span>

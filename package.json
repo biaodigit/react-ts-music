@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "better-scroll": "^1.13.2",
-    "fastclick": "^1.0.6",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",

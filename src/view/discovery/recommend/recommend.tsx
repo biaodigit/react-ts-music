@@ -38,27 +38,27 @@ class Recommend extends React.Component<any, StateType> {
                             }
                         </div>
                         <TypeNav>
-                            <div className="type-nav-item">
+                            <div onClick={this.showToast} className="type-nav-item">
                                 <div className='img-box'>
-                                    <img src={require('../images/private.png')} />
+                                    <img src={require('../images/private.png')}/>
                                 </div>
                                 <span className='text'>私人FM</span>
                             </div>
-                            <div className="type-nav-item">
+                            <div onClick={this.showToast} className="type-nav-item">
                                 <div className='img-box'>
-                                    <img src={require('../images/date.png')} />
+                                    <img src={require('../images/date.png')}/>
                                 </div>
                                 <span className='text'>每日推荐</span>
                             </div>
                             <Link to='/allSongList' className="type-nav-item">
                                 <span className='img-box'>
-                                    <img src={require('../images/songlist.png')} />
+                                    <img src={require('../images/songlist.png')}/>
                                 </span>
                                 <span className='text'>歌单</span>
                             </Link>
                             <Link to='/rank' className="type-nav-item">
                                 <div className='img-box'>
-                                    <img src={require('../images/rank.png')} />
+                                    <img src={require('../images/rank.png')}/>
                                 </div>
                                 <span className='text'>排行榜</span>
                             </Link>
@@ -77,6 +77,10 @@ class Recommend extends React.Component<any, StateType> {
                 })
             }
         })
+    }
+
+    private showToast = () => {
+        console.log('我是谁我在哪你为什么点我')
     }
 }
 
