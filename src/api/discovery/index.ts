@@ -12,10 +12,10 @@ export function getBanner() {
 }
 
 /**
- * 全部精品歌单
+ * 歌单
  * @returns {AxiosPromise}
  */
-export function getFineSongList() {
+export function getSongList() {
     return fetch({
         method: 'get',
         url: 'top/playlist'
@@ -30,6 +30,28 @@ export function getRecSongList() {
     return fetch({
         method: 'get',
         url: 'personalized'
+    })
+}
+
+/**
+ * 精品歌单
+ * @returns {AxiosPromise}
+ */
+export function getFineSongList() {
+    return fetch({
+        method: 'get',
+        url: 'top/playlist/highquality'
+    })
+}
+
+/**
+ * 最新音乐
+ * @returns {AxiosPromise}
+ */
+export function getNewSongs() {
+    return fetch({
+        method: 'get',
+        url: 'personalized/newsong'
     })
 }
 

@@ -5,6 +5,8 @@ import Video from '../view/video/video';
 import Mine from '../view/mine/mine';
 import Singer from '../view/singer/singer';
 import Account from '../view/account/account'
+import AllSongList from '../view/all-song-list/all-song-list'
+import Rank from '../view/rank/rank'
 import Search from '../view/search/search'
 import Footer from '../component/footer/footer';
 
@@ -18,6 +20,8 @@ const Routes = () => (
                     <Route path='/mine' component={Mine}/>
                     <Route path='/singer' component={Singer}/>
                     <Route path='/account' component={Account}/>
+                    <Route path='/allSongList' component={AllSongList}/>
+                    <Route path='/rank' component={Rank}/>
                     <Redirect to='/discovery'/>
                 </Switch>
                 <Search/>

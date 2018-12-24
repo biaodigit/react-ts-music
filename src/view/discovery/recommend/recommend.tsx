@@ -1,7 +1,8 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom'
 import Scroll from '../../../base/scroll/scroll'
 import Slider from '../../../base/slider/slider'
-import {DiscoveryPropsType} from "../PropsType";
+import TypeNav from '../../../component/type-nav/type-nav'
 import {getBanner} from "../../../api/discovery";
 import './recommend.scss'
 
@@ -10,8 +11,8 @@ interface StateType {
 }
 
 
-class Recommend extends React.Component<DiscoveryPropsType, StateType> {
-    constructor(props: DiscoveryPropsType, state: StateType) {
+class Recommend extends React.Component<any, StateType> {
+    constructor(props: any, state: StateType) {
         super(props)
 
         this.state = {
@@ -25,7 +26,7 @@ class Recommend extends React.Component<DiscoveryPropsType, StateType> {
 
     public render() {
         return (
-            <div className={['recommend-container', this.props.disNav === 'recommend' ? '' : 'hidden'].join(' ')}>
+            <div className='recommend-container'>
                 <Scroll content={'recommend-content'}>
                     <div>
                         <div className='slider-container'>
@@ -36,6 +37,32 @@ class Recommend extends React.Component<DiscoveryPropsType, StateType> {
                                 </div>
                             }
                         </div>
+                        <TypeNav>
+                            <div className="type-nav-item">
+                                <div className='img-box'>
+                                    <img src={require('../images/private.png')} />
+                                </div>
+                                <span className='text'>私人FM</span>
+                            </div>
+                            <div className="type-nav-item">
+                                <div className='img-box'>
+                                    <img src={require('../images/date.png')} />
+                                </div>
+                                <span className='text'>每日推荐</span>
+                            </div>
+                            <Link to='/allSongList' className="type-nav-item">
+                                <span className='img-box'>
+                                    <img src={require('../images/songlist.png')} />
+                                </span>
+                                <span className='text'>歌单</span>
+                            </Link>
+                            <Link to='/rank' className="type-nav-item">
+                                <div className='img-box'>
+                                    <img src={require('../images/rank.png')} />
+                                </div>
+                                <span className='text'>排行榜</span>
+                            </Link>
+                        </TypeNav>
                     </div>
                 </Scroll>
             </div>

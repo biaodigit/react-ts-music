@@ -1,0 +1,33 @@
+@import "../../common/scss/common";
+
+.type-nav-container {
+  @include border-1px-bottom;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  .type-nav-item {
+    display: inline-block;
+    backface-visibility: unset;
+    .img-box {
+      display: flex;
+      width: 0.9rem;
+      height: 0.9rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-align: center;
+      background-color: #E4463B;
+      img {
+        width: 0.5rem;
+      }
+    }
+    .text {
+      display: inline-block;
+      margin-top: 0.15rem;
+      font-size: $font-size-small;
+      color: $color-text;
+    }
+  }
+}

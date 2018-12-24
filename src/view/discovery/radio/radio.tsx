@@ -1,16 +1,11 @@
 import * as React from 'react';
 import Scroll from '../../../base/scroll/scroll'
-import {DiscoveryPropsType} from "../PropsType";
 import './radio.scss'
 
-class Radio extends React.Component<DiscoveryPropsType, any> {
-    constructor(props: DiscoveryPropsType) {
-        super(props)
-    }
-
+class Radio extends React.Component {
     public render() {
         return (
-            <div className={['radio-container', this.props.disNav === 'radio' ? '' : 'hidden'].join(' ')}>
+            <div className='radio-container'>
                 <Scroll content={'radio-content'}>
                     <div>
                         主播电台

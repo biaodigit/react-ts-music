@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
 import {searchIsShow} from "./search";
-import {disNav} from "./discovery";
+import {footerNav} from "./footer";
 
 export default combineReducers({
-    disNav,
+    footerNav,
     searchIsShow
 })

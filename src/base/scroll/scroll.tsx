@@ -10,6 +10,7 @@ interface PropTypes extends ScrollPropsType {
 class Scroll extends React.Component<PropTypes, any> {
     static defaultProps = {
         beforeScroll: false,
+        click: true,
         data: null,
         listenScroll: false,
         probeType: 1,

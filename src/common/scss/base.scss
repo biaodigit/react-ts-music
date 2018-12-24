@@ -26,3 +26,21 @@ body, html {
     }
   }
 }
+
+@media(-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+  .border-1px-bottom {
+    &:after {
+      transform: scaleY(0.7);
+      -webkit-transform: scaleY(0.7);
+    }
+  }
+}
+
+@media(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .border-1px-bottom {
+    &:after {
+      transform: scaleY(0.5);
+      -webkit-transform: scaleY(0.5);
+    }
+  }
+}
