@@ -1,5 +1,5 @@
 export interface SliderPropsType {
-    loop?: boolean,
-    autoPlay?: boolean,
-    interval?: number
+    loop?: boolean;
+    autoPlay?: boolean;
+    interval?: number;
 }
