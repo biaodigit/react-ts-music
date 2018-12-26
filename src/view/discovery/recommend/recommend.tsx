@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Scroll from '../../../base/scroll/scroll'
 import Slider from '../../../base/slider/slider'
 import TypeNav from '../../../component/type-nav/type-nav'
+import Toast from '../../../base/toast/toast'
 import {getBanner} from "../../../api/discovery";
 import './recommend.scss'
 
@@ -80,7 +81,7 @@ class Recommend extends React.Component<any, StateType> {
     }
 
     private showToast = () => {
-        console.log('我是谁我在哪你为什么点我')
+        Toast.show('功能未开放', 2000)
     }
 }
 

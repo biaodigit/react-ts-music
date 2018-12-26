@@ -2,6 +2,7 @@ import * as React from 'react'
 import {NoticePropsType} from "./PropsType";
 
 interface PropsType extends NoticePropsType {
+    children: any
     onClose: () => void
 }
 
@@ -28,9 +29,7 @@ class Notice extends React.Component<PropsType, any> {
     public render() {
         return (
             <div className={`${this.props.prefixCls}-notice`}>
-                <div className={`${this.props.prefixCls}-notice-content`}>
-                    {this.props.content}
-                </div>
+                {this.props.children}
             </div>
         )
     }

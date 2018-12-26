@@ -1,7 +1,10 @@
+import classNames from 'classnames'
 import Notification from '../notice/notification'
+import * as React from "react";
+import './toast.scss'
 
 let newNotification: any;
-// const prefixCls = 'toast';
+const ToastPrefixCls = 'toast';
 
 const getNewNotification = (
     mask?: boolean,
@@ -12,13 +15,40 @@ const getNewNotification = (
         newNotification = null
     }
     (Notification as any).newInstance(
-        // todo
+        {
+            prefixCls: ToastPrefixCls,
+            className: classNames({
+                [`${ToastPrefixCls}-mask`]: mask,
+                [`${ToastPrefixCls}-nomask}`]: !mask
+            })
+        },
+        (notification: any) => callback && callback(notification)
     )
 }
 
-const notice = (text: string, number?: number, mask?: boolean) => {
+const notice = (
+    content: string,
+    duration = 2000,
+    mask = true,
+    onClose?: () => void
+) => {
     getNewNotification(mask, notification => {
-        //todo
+        newNotification = notification;
+        notification.notice({
+            duration,
+            mask,
+            content: (
+                <div className={`${ToastPrefixCls}-info`} role="alert" aria-live="assertive">
+                    <div>{content}</div>
+                </div>
+            ),
+            onClose() {
+                onClose && onClose();
+                notification.destroy();
+                notification = null;
+                newNotification = null
+            }
+        })
     })
 }
 

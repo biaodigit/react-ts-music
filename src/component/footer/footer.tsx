@@ -1,4 +1,5 @@
 import * as React from 'react'
+import classNames from 'classnames'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {tabs} from '../../common/ts/config'
@@ -20,7 +21,7 @@ class Footer extends React.Component<PropsType, any> {
                     tabs.map((item, index) => (
                         <Link className='tab' to={`${item.path}`} key={index}>
                             <img className='icon' src={this.calRoute(item.path)}/>
-                            <span className={['text', this.calTextColor(item.path)].join(' ')}>{item.text}</span>
+                            <span className={classNames(['text', this.calTextColor(item.path)])}>{item.text}</span>
                         </Link>
                     ))
                 }
