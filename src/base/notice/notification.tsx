@@ -17,15 +17,15 @@ let noticeNumber = 0;
 
 const getUuid = () => {
     return `notification${new Date().getTime()}-${noticeNumber++}`
-}
+};
 
 class Notification extends React.Component<PropsType, StateType> {
     static defaultProps = {
         prefixCls: 'notification',
 
-    }
+    };
 
-    static newInstance = (properties: any, callback: any) => {
+    static newInstance = (properties: any, callback: (notification:any) => void) => {
         // region
         const {...props} = properties || {};
 
@@ -65,8 +65,8 @@ class Notification extends React.Component<PropsType, StateType> {
         super(props);
 
         this.state = {
-            notices: [],
-            hasMask: true
+            hasMask: true,
+            notices: []
         }
     }
 
@@ -98,11 +98,13 @@ class Notification extends React.Component<PropsType, StateType> {
             const closeFun = () => {
                 this.remove(notice.key);
 
-                if (notice.onClose) notice.onClose()
+                if (notice.onClose) {
+                    notice.onClose()
+                }
             }
 
             return (
-                <Notice {...notice} onClose={closeFun}>
+                <Notice key={notice.key} {...notice} onClose={closeFun}>
                     {notice.content}
                 </Notice>
             )

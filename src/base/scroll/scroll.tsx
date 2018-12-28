@@ -3,8 +3,8 @@ import BScroll from 'better-scroll'
 import {ScrollPropsType} from './PropsType'
 
 interface PropTypes extends ScrollPropsType {
-    children?: object
-    content?: string
+    children: React.ReactNode
+    className?: string
 }
 
 class Scroll extends React.Component<PropTypes, any> {
@@ -46,7 +46,7 @@ class Scroll extends React.Component<PropTypes, any> {
 
     public render() {
         return (
-            <div ref={this.scrollContainer} className={['scroll-container', this.props.content].join(' ')}>
+            <div ref={this.scrollContainer} className={['scroll-container', this.props.className].join(' ')}>
                 {this.props.children}
             </div>
         )

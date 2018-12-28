@@ -3,12 +3,15 @@ import {Link} from 'react-router-dom'
 import Scroll from '../../../base/scroll/scroll'
 import Slider from '../../../base/slider/slider'
 import TypeNav from '../../../component/type-nav/type-nav'
+import Panel from '../../../component/panel/panel'
+import List from '../../../component/list/list'
 import Toast from '../../../base/toast/toast'
-import {getBanner} from "../../../api/discovery";
+import {getBanner, getRecSongList} from '../../../api/discovery'
 import './recommend.scss'
 
 interface StateType {
-    sliderData: object[]
+    sliderData: object[],
+    listData: object[]
 }
 
 
@@ -17,18 +20,20 @@ class Recommend extends React.Component<any, StateType> {
         super(props)
 
         this.state = {
-            sliderData: []
+            sliderData: [],
+            listData:[]
         }
     }
 
     public componentWillMount() {
         this.getRecBanner()
+        this.getSongList()
     }
 
     public render() {
         return (
             <div className='recommend-container'>
-                <Scroll content={'recommend-content'}>
+                <Scroll className={'recommend-content'}>
                     <div>
                         <div className='slider-container'>
                             {
@@ -64,6 +69,9 @@ class Recommend extends React.Component<any, StateType> {
                                 <span className='text'>排行榜</span>
                             </Link>
                         </TypeNav>
+                        <Panel title={'推荐歌单'} className={'rec-song-list'}>
+                            <List data={this.state.listData}/>
+                        </Panel>
                     </div>
                 </Scroll>
             </div>
@@ -75,6 +83,16 @@ class Recommend extends React.Component<any, StateType> {
             if (res.data.code === 200) {
                 this.setState({
                     sliderData: res.data.banners.slice(0, 4)
+                })
+            }
+        })
+    }
+
+    private getSongList = () => {
+        getRecSongList().then((res) => {
+            if (res.data.code === 200) {
+                this.setState({
+                    listData: res.data.result.slice(0, 6)
                 })
             }
         })

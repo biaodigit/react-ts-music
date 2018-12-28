@@ -2,7 +2,7 @@ import * as React from 'react';
 import './header.scss'
 
 interface Props {
-    children: object
+    children: React.ReactNode
 }
 
 class Header extends React.Component<Props, {}> {

@@ -2,7 +2,7 @@ import * as React from 'react'
 import {NoticePropsType} from "./PropsType";
 
 interface PropsType extends NoticePropsType {
-    children: any
+    children: React.ReactNode
     onClose: () => void
 }
 

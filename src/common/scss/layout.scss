@@ -1,5 +1,11 @@
 @import "variable";
 
+@mixin flex($direction:column,$inline:block) {
+  display: if($inline==block,flex,inline-flex);
+  flex-direction: $direction;
+  flex-wrap: wrap;
+}
+
 @mixin box-container($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem) {
   position: $position;
   width: $width;
@@ -29,6 +35,28 @@
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+@mixin panel-container(
+  $bgColor:$color-background,
+  $padding:0,
+  $margin:10px 0,
+  $txtPadding:0 24px,
+  $height:23px,
+  $txtColor:$color-text,
+  $txtSize:$font-size-medium
+) {
+  background-color: $bgColor;
+  padding: $padding;
+  margin: $margin;
+  > h4 {
+    display: inline-block;
+    height: $height;
+    line-height: $height;
+    padding: $txtPadding;
+    color: $txtColor;
+    font-size: $txtSize;
   }
 }
 
