@@ -1,13 +1,22 @@
 import * as React from 'react';
 import BScroll from 'better-scroll'
 import {ScrollPropsType} from './PropsType'
+import './scroll.scss'
 
 interface PropTypes extends ScrollPropsType {
     children: React.ReactNode
     className?: string
+    refreshText?: string
 }
 
-class Scroll extends React.Component<PropTypes, any> {
+interface StateType {
+    beforePullDown: boolean
+    bubbleY: number
+    isPullingDown: boolean
+    pullDownStyle: string
+}
+
+class Scroll extends React.Component<PropTypes, StateType> {
     static defaultProps = {
         beforeScroll: false,
         click: true,
@@ -17,25 +26,28 @@ class Scroll extends React.Component<PropTypes, any> {
         pullup: false,
         pullDownRefresh: {
             threshold: 30,
-            stop: 20
+            stop: 40
         },
         refreshDelay: 20,
+        refreshText: '刷新成功',
         scrollX: false,
         scrollY: true
     };
 
     private scroll: any;
     private scrollContainer: any;
-    private isPullingDown: boolean
 
-    constructor(props: PropTypes) {
+    constructor(props: PropTypes, state: StateType) {
         super(props);
 
         this.scrollContainer = React.createRef()
-    }
 
-    public componentWillMount() {
-        this.isPullingDown = false
+        this.state = {
+            beforePullDown: true,
+            bubbleY: 0,
+            isPullingDown: false,
+            pullDownStyle: ''
+        }
     }
 
     public componentDidMount() {
@@ -54,9 +66,21 @@ class Scroll extends React.Component<PropTypes, any> {
     }
 
     public render() {
+        const {beforePullDown, isPullingDown} = this.state;
+        const {refreshText} = this.props
         return (
             <div ref={this.scrollContainer} className={['scroll-container', this.props.className].join(' ')}>
-                {this.props.children}
+                <div>
+                    <div className='pull-down-container'>
+                        {
+                            beforePullDown
+                                ? <span>下拉刷新</span>
+                                : isPullingDown ?  <span>正在刷新</span> : <span>{refreshText}</span>
+                        }
+
+                    </div>
+                    {this.props.children}
+                </div>
             </div>
         )
     }
@@ -75,6 +99,10 @@ class Scroll extends React.Component<PropTypes, any> {
         if (this.props.pullDownRefresh) {
             this.initPullDownRefresh()
         }
+
+        this.scroll.on('scroll', (pos: any) => {
+            // todo
+        })
     }
 
     private initPullUpLoad() {
@@ -85,7 +113,11 @@ class Scroll extends React.Component<PropTypes, any> {
 
     private initPullDownRefresh() {
         this.scroll.on('pullingDown', () => {
-            this.isPullingDown = true
+            this.setState({
+                beforePullDown: false,
+                isPullingDown: true
+            });
+
             if (this.props.pullDown) {
                 this.props.pullDown()
             }
@@ -93,9 +125,14 @@ class Scroll extends React.Component<PropTypes, any> {
     }
 
     private _forceUpdate(dirty = false) {
-        if (this.props.pullDownRefresh && this.isPullingDown) {
-            this.isPullingDown = false;
-            this.reboundPullDown()
+        if (this.props.pullDownRefresh && this.state.isPullingDown) {
+            this.reboundPullDown().then(() => {
+                this.setState({
+                    isPullingDown: false
+                }, () => {
+                    this.afterPullDown()
+                })
+            })
         } else {
             this.refresh()
         }
@@ -103,9 +140,24 @@ class Scroll extends React.Component<PropTypes, any> {
 
     private reboundPullDown() {
         const stop = 600;
+
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                this.scroll.finishPullDown()
+                resolve()
+            }, stop)
+        })
+    }
+
+    private afterPullDown() {
+        const bounceTime = 500
+
         setTimeout(() => {
-            this.scroll.finishPullDown()
-        }, stop)
+            this.setState({
+                beforePullDown: true,
+            });
+            this.refresh()
+        }, bounceTime)
     }
 
     private refresh() {

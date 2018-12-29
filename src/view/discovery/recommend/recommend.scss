@@ -3,6 +3,7 @@
 .recommend-container {
   @include box-container($top:1.68rem);
   .recommend-content {
+    position: relative;
     height: 100%;
     font-size: $font-size-large;
     overflow: hidden;

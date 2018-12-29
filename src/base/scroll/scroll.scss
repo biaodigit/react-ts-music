@@ -1,0 +1,12 @@
+@import "../../common/scss/common";
+
+.pull-down-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: -20px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: $font-size-medium;
+}

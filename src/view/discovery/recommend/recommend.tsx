@@ -35,53 +35,51 @@ class Recommend extends React.Component<any, StateType> {
             <div className='recommend-container'>
                 <Scroll pullDown={this.onPullDownRefresh}
                         pullup={true} className={'recommend-content'}>
-                    <div>
-                        <div className='slider-container'>
-                            {
-                                this.state.sliderData.length &&
-                                <div className='slider-content'>
-                                    <Slider data={this.state.sliderData}/>
-                                </div>
-                            }
+                    <div className='slider-container'>
+                        {
+                            this.state.sliderData.length &&
+                            <div className='slider-content'>
+                                <Slider data={this.state.sliderData}/>
+                            </div>
+                        }
+                    </div>
+                    <TypeNav>
+                        <div onClick={this.showToast} className="type-nav-item">
+                            <div className='img-box'>
+                                <img src={require('../images/private.png')}/>
+                            </div>
+                            <span className='text'>私人FM</span>
                         </div>
-                        <TypeNav>
-                            <div onClick={this.showToast} className="type-nav-item">
-                                <div className='img-box'>
-                                    <img src={require('../images/private.png')}/>
-                                </div>
-                                <span className='text'>私人FM</span>
+                        <div onClick={this.showToast} className="type-nav-item">
+                            <div className='img-box'>
+                                <img src={require('../images/date.png')}/>
                             </div>
-                            <div onClick={this.showToast} className="type-nav-item">
-                                <div className='img-box'>
-                                    <img src={require('../images/date.png')}/>
-                                </div>
-                                <span className='text'>每日推荐</span>
-                            </div>
-                            <Link to='/allSongList' className="type-nav-item">
+                            <span className='text'>每日推荐</span>
+                        </div>
+                        <Link to='/allSongList' className="type-nav-item">
                                 <span className='img-box'>
                                     <img src={require('../images/songlist.png')}/>
                                 </span>
-                                <span className='text'>歌单</span>
-                            </Link>
-                            <Link to='/rank' className="type-nav-item">
-                                <div className='img-box'>
-                                    <img src={require('../images/rank.png')}/>
-                                </div>
-                                <span className='text'>排行榜</span>
-                            </Link>
-                        </TypeNav>
-                        <Panel title={'推荐歌单'} className={'rec-song-list'}>
-                            <List data={this.state.listData}/>
-                        </Panel>
-                    </div>
+                            <span className='text'>歌单</span>
+                        </Link>
+                        <Link to='/rank' className="type-nav-item">
+                            <div className='img-box'>
+                                <img src={require('../images/rank.png')}/>
+                            </div>
+                            <span className='text'>排行榜</span>
+                        </Link>
+                    </TypeNav>
+                    <Panel title={'推荐歌单'} className={'rec-song-list'}>
+                        <List data={this.state.listData}/>
+                    </Panel>
                 </Scroll>
             </div>
         )
     }
 
     private onPullDownRefresh = () => {
-        this.getRecBanner()
-        console.log(1)
+        this.getRecBanner();
+        this.getSongList();
     }
 
     private getRecBanner = () => {
