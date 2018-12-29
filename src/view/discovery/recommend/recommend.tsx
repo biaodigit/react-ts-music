@@ -21,7 +21,7 @@ class Recommend extends React.Component<any, StateType> {
 
         this.state = {
             sliderData: [],
-            listData:[]
+            listData: []
         }
     }
 
@@ -33,7 +33,8 @@ class Recommend extends React.Component<any, StateType> {
     public render() {
         return (
             <div className='recommend-container'>
-                <Scroll className={'recommend-content'}>
+                <Scroll pullDown={this.onPullDownRefresh}
+                        pullup={true} className={'recommend-content'}>
                     <div>
                         <div className='slider-container'>
                             {
@@ -76,6 +77,11 @@ class Recommend extends React.Component<any, StateType> {
                 </Scroll>
             </div>
         )
+    }
+
+    private onPullDownRefresh = () => {
+        this.getRecBanner()
+        console.log(1)
     }
 
     private getRecBanner = () => {
