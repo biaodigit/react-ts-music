@@ -4,6 +4,13 @@ $toastPrefixCls: toast;
 
 .#{$toastPrefixCls} {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   z-index: 99;
   font-size: 42px;
   text-align: center;
@@ -20,19 +27,6 @@ $toastPrefixCls: toast;
     }
   }
   &.#{$toastPrefixCls}-mask {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-  }
-
-  &.#{$toastPrefixCls}-nomask {
-    max-width: 50%;
-    width: auto;
-    left: 50%;
-    top: 50%;
+     background-color: rgba(0,0,0,0.3);
   }
 }

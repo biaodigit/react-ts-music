@@ -9,7 +9,8 @@ interface PropsType extends NoticePropsType {
 class Notice extends React.Component<PropsType, any> {
     static defaultProps = {
         duration: 2000,
-        prefixCls: 'toast'
+        prefixCls: 'toast',
+        mask: false
     };
 
     private closeTimer: any;

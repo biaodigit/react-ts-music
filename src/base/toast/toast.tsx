@@ -1,6 +1,6 @@
+import * as React from "react";
 import classNames from 'classnames'
 import Notification from '../notice/notification'
-import * as React from "react";
 import './toast.scss'
 
 let newNotification: any;
@@ -19,7 +19,7 @@ const getNewNotification = (
             prefixCls: ToastPrefixCls,
             className: classNames({
                 [`${ToastPrefixCls}-mask`]: mask,
-                [`${ToastPrefixCls}-nomask}`]: !mask
+                [`${ToastPrefixCls}-nomask`]: !mask
             })
         },
         (notification: any) => callback && callback(notification)
@@ -29,7 +29,7 @@ const getNewNotification = (
 const notice = (
     content: string,
     duration = 2000,
-    mask = true,
+    mask = false,
     onClose?: () => void
 ) => {
     getNewNotification(mask, notification => {
