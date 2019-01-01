@@ -6,12 +6,13 @@ import TypeNav from '../../../component/type-nav/type-nav'
 import Panel from '../../../component/panel/panel'
 import List from '../../../component/list/list'
 import Toast from '../../../base/toast/toast'
-import {getBanner, getRecSongList} from '../../../api/discovery'
+import {getBanner, getRecSongList, getFineSongList} from '../../../api/discovery'
 import './recommend.scss'
 
 interface StateType {
     sliderData: object[],
     listData: object[]
+    fineSongData: object[]
 }
 
 
@@ -21,13 +22,15 @@ class Recommend extends React.Component<any, StateType> {
 
         this.state = {
             sliderData: [],
-            listData: []
+            listData: [],
+            fineSongData: []
         }
     }
 
     public componentWillMount() {
-        this.getRecBanner()
-        this.getSongList()
+        this.getRecBanner();
+        this.getSongList();
+        this.getFineSongs()
     }
 
     public render() {
@@ -72,6 +75,9 @@ class Recommend extends React.Component<any, StateType> {
                     <Panel title={'推荐歌单'} className={'rec-song-list'}>
                         <List data={this.state.listData}/>
                     </Panel>
+                    <Panel title={'精品歌单'} className={'fine-song-list'}>
+                        <List data={this.state.fineSongData}/>
+                    </Panel>
                 </Scroll>
             </div>
         )
@@ -80,6 +86,7 @@ class Recommend extends React.Component<any, StateType> {
     private onPullDownRefresh = () => {
         this.getRecBanner();
         this.getSongList();
+        this.getFineSongs()
     }
 
     private getRecBanner = () => {
@@ -97,6 +104,21 @@ class Recommend extends React.Component<any, StateType> {
             if (res.data.code === 200) {
                 this.setState({
                     listData: res.data.result.slice(0, 6)
+                })
+            }
+        })
+    }
+
+    private getFineSongs = () => {
+        let data = [];
+        getFineSongList().then((res) => {
+            if (res.data.code === 200) {
+                data = res.data.playlists.slice(0, 6);
+                data.map((item: any) => {
+                    item.picUrl = item.coverImgUrl
+                });
+                this.setState({
+                    fineSongData: data
                 })
             }
         })

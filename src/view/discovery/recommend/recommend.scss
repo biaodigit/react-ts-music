@@ -11,7 +11,7 @@
       @include slider-container;
       font-size: 0;
     }
-    .rec-song-list {
+    .rec-song-list, .fine-song-list {
       @include panel-container($margin: 10px, $txtPadding: 0, $txtSize: $font-size-medium-x);
     }
   }
