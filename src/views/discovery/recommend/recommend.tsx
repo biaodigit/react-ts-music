@@ -2,9 +2,9 @@ import * as React from 'react';
 import {Link} from 'react-router-dom'
 import Scroll from '../../../base/scroll/scroll'
 import Slider from '../../../base/slider/slider'
-import TypeNav from '../../../component/type-nav/type-nav'
-import Panel from '../../../component/panel/panel'
-import List from '../../../component/list/list'
+import TypeNav from '../../../components/type-nav/type-nav'
+import Panel from '../../../components/panel/panel'
+import List from '../../../components/list/list'
 import Toast from '../../../base/toast/toast'
 import {getBanner, getRecSongList, getFineSongList} from '../../../api/discovery'
 import './recommend.scss'
@@ -73,10 +73,10 @@ class Recommend extends React.Component<any, StateType> {
                         </Link>
                     </TypeNav>
                     <Panel title={'推荐歌单'} className={'rec-song-list'}>
-                        <List data={this.state.listData}/>
+                        <List select={(id: number) => this.props.select(id)} data={this.state.listData}/>
                     </Panel>
                     <Panel title={'精品歌单'} className={'fine-song-list'}>
-                        <List data={this.state.fineSongData}/>
+                        <List select={(id: number) => this.props.select(id)} data={this.state.fineSongData}/>
                     </Panel>
                 </Scroll>
             </div>

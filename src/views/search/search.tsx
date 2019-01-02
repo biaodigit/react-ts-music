@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from '../../component/header/header';
+import Header from '../../components/header/header';
 import SearchBox from '../../base/searct-box/search-box';
 import * as searchActions from '../../actions/search';
 import {connect} from 'react-redux';

@@ -17,16 +17,39 @@ $toastPrefixCls: toast;
   transform: translateZ(1px);
   &-notice {
     height: 0.8rem;
+    border-radius: 10px;
+    color: $color-background;
+    font-size: $font-size-large;
+    background-color: black;
+    opacity: 0.5;
+    animation: fadeIn .3s;
     .#{$toastPrefixCls}-info {
       line-height: 0.8rem;
       padding: 0 0.3rem;
-      border-radius: 10px;
-      color: $color-background;
-      font-size: $font-size-large;
-      background-color: rgba(58, 58, 58, 0.9);
     }
   }
   &.#{$toastPrefixCls}-mask {
      background-color: rgba(0,0,0,0.3);
+  }
+  .fadeOut {
+    animation: fadeOut .3s;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
   }
 }

@@ -14,9 +14,12 @@ class Notice extends React.Component<PropsType, any> {
     };
 
     private closeTimer: any;
+    private notice: any
 
     constructor(props: PropsType) {
         super(props);
+
+        this.notice = React.createRef()
     }
 
     public componentDidMount() {
@@ -29,22 +32,34 @@ class Notice extends React.Component<PropsType, any> {
 
     public render() {
         return (
-            <div className={`${this.props.prefixCls}-notice`}>
+            <div ref={this.notice} className={`${this.props.prefixCls}-notice`}>
                 {this.props.children}
             </div>
         )
     }
 
+    private outAnimate = () => {
+        return new Promise((resolve) => {
+            this.notice.current.classList.remove('fadeIn');
+            this.notice.current.classList.add('fadeOut');
+            resolve()
+        })
+    }
+
     private close = () => {
-        this.clearCloseTimer();
-        this.props.onClose()
+        const delay = 300;
+
+        setTimeout(() => {
+            this.clearCloseTimer();
+            this.props.onClose()
+        }, delay)
 
     }
 
     private startCloseTimer = () => {
         if (this.props.duration && this.props.duration > 0) {
             this.closeTimer = setTimeout(() => {
-                this.close()
+                this.outAnimate().then(this.close)
             }, this.props.duration - 300)
         }
     }

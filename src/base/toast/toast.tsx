@@ -38,7 +38,7 @@ const notice = (
             duration,
             mask,
             content: (
-                <div className={`${ToastPrefixCls}-info`} role="alert" aria-live="assertive">
+                <div className={`${ToastPrefixCls}-info` } role="alert" aria-live="assertive">
                     <div>{content}</div>
                 </div>
             ),

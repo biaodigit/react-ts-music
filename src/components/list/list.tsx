@@ -3,6 +3,7 @@ import './list.scss'
 
 interface PropsType {
     data: object[]
+    select: (id: number) => void
 }
 
 class List extends React.Component<PropsType, any> {
@@ -16,7 +17,7 @@ class List extends React.Component<PropsType, any> {
             <ul className='list-container'>
                 {
                     data.map((item: any, index: number) => (
-                        <li className='list' key={index}>
+                        <li onClick={() => this.props.select(item.id)} className='list' key={index}>
                             <div className='icon'>
                                 <img className='bg-img' src={item.picUrl}/>
                                 {

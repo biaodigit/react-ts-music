@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
-import Discovery from '../view/discovery/discovery';
-import Video from '../view/video/video';
-import Mine from '../view/mine/mine';
-import Singer from '../view/singer/singer';
-import Account from '../view/account/account'
-import AllSongList from '../view/all-song-list/all-song-list'
-import Rank from '../view/rank/rank'
-import Search from '../view/search/search'
-import Footer from '../component/footer/footer';
+import Discovery from '../views/discovery/discovery';
+import Video from '../views/video/video';
+import Mine from '../views/mine/mine';
+import Singer from '../views/singer/singer';
+import Account from '../views/account/account'
+import AllSongList from '../views/all-song-list/all-song-list'
+import Rank from '../views/rank/rank'
+import SongList from '../views/song-list/song-list'
+import Search from '../views/search/search'
+import Footer from '../components/footer/footer';
 
 const Routes = () => (
     <div className='App'>
@@ -22,6 +23,7 @@ const Routes = () => (
                     <Route path='/account' component={Account}/>
                     <Route path='/allSongList' component={AllSongList}/>
                     <Route path='/rank' component={Rank}/>
+                    <Route path='/songList/:id' component={SongList}/>
                     <Redirect to='/discovery'/>
                 </Switch>
                 <Search/>

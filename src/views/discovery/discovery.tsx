@@ -2,7 +2,7 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import * as footerActions from '../../actions/footer'
-import Header from '../../component/header/header'
+import Header from '../../components/header/header'
 import SearchBox from '../../base/searct-box/search-box'
 import Recommend from './recommend/recommend'
 import Radio from './radio/radio'
@@ -11,13 +11,14 @@ import './discovery.scss'
 
 interface PropsType extends DiscoveryPropsType {
     switchNav: (path: string) => void
+    history: any
 }
 
 interface StateType {
     disNav: string
 }
 
-const path:string = '/discovery'
+const path: string = '/discovery'
 
 class Discovery extends React.Component<PropsType, StateType> {
     constructor(props: PropsType, state: StateType) {
@@ -55,7 +56,9 @@ class Discovery extends React.Component<PropsType, StateType> {
                     </div>
                 </div>
                 {
-                    this.state.disNav === 'recommend' ? <Recommend/> : <Radio/>
+                    this.state.disNav === 'recommend' ?
+                        <Recommend select={(id: number) => this.selectItem(id)}/> :
+                        <Radio/>
                 }
             </div>
         )
@@ -65,6 +68,10 @@ class Discovery extends React.Component<PropsType, StateType> {
         this.setState({
             disNav: text
         })
+    }
+
+    private selectItem = (id: number) => {
+        this.props.history.push({pathname: `/songList/${id}`})
     }
 }
 
