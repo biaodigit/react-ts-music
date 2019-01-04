@@ -16,7 +16,7 @@ const Routes = () => (
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route path='/discovery' exact={true} component={Discovery}/>
+                    <Route path='/discovery' component={Discovery}/>
                     <Route path='/video' component={Video}/>
                     <Route path='/mine' component={Mine}/>
                     <Route path='/singer' component={Singer}/>

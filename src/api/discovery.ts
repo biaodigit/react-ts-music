@@ -44,6 +44,13 @@ export function getFineSongList() {
     })
 }
 
+export function getRecDjprogram() {
+    return fetch({
+        method: 'get',
+        url: ''
+    })
+}
+
 /**
  * 最新音乐
  * @returns {AxiosPromise}

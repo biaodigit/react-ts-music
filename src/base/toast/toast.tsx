@@ -28,20 +28,28 @@ const getNewNotification = (
 
 const notice = (
     content: string,
+    type: string,
     duration = 2000,
     mask = false,
     onClose?: () => void
 ) => {
+    const iconsTypes: { [key: string]: string } = {
+        info: '',
+        loading: 'loading'
+    };
+    const iconType = iconsTypes[type];
     getNewNotification(mask, notification => {
         newNotification = notification;
         notification.notice({
             duration,
             mask,
-            content: (
-                <div className={`${ToastPrefixCls}-info` } role="alert" aria-live="assertive">
-                    <div>{content}</div>
-                </div>
-            ),
+            content: !!iconType ? (
+                    <div/>
+                ) : (
+                    <div className={`${ToastPrefixCls}-info`} role="alert" aria-live="assertive">
+                        <div>{content}</div>
+                    </div>
+                ),
             onClose() {
                 onClose && onClose();
                 notification.destroy();
@@ -53,7 +61,14 @@ const notice = (
 }
 
 export default {
-    show: (text: string, duration?: number, mask?: boolean) => {
-        return notice(text, duration, mask)
+    info: (text: string, duration?: number, mask?: boolean) => {
+        return notice(text, 'info', duration, mask)
+    },
+    loading: (text: string, duration?: number, mask?: boolean) => {
+        return notice(text, 'loading', duration, mask)
+    },
+    hide: () => {
+        newNotification && newNotification.destroy()
+        newNotification = null
     }
 }

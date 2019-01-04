@@ -1,12 +1,12 @@
 import * as React from 'react'
-import './list.scss'
+import './column-list.scss'
 
 interface PropsType {
     data: object[]
     select: (id: number) => void
 }
 
-class List extends React.Component<PropsType, any> {
+class ColumnList extends React.Component<PropsType, any> {
     constructor(props: PropsType) {
         super(props)
     }
@@ -14,16 +14,16 @@ class List extends React.Component<PropsType, any> {
     public render() {
         const {data} = this.props
         return (
-            <ul className='list-container'>
+            <ul className='column-list-container'>
                 {
                     data.map((item: any, index: number) => (
-                        <li onClick={() => this.props.select(item.id)} className='list' key={index}>
+                        <li onClick={() => this.props.select(item.id)} className='column' key={index}>
                             <div className='icon'>
                                 <img className='bg-img' src={item.picUrl}/>
                                 {
                                     item.playCount && item.playCount > 0 &&
                                     <div className='play-count-container'>
-                                        <img className='play-count-img' src={require('./images/headphone.png')}/>
+                                        <img className='play-count-img' src={require('../../assets/images/headphone.png')}/>
                                         <span className='play-count-num'>{this.calPlayCount(item.playCount)}</span>
                                     </div>
                                 }
@@ -58,4 +58,4 @@ class List extends React.Component<PropsType, any> {
     }
 }
 
-export default List
+export default ColumnList

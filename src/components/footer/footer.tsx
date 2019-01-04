@@ -31,9 +31,9 @@ class Footer extends React.Component<PropsType, any> {
 
     private calRoute(path: string): string {
         if (path === this.props.footerNav) {
-            return require(`./images${path}_active.png`)
+            return require(`../../assets/images${path}_active.png`)
         } else {
-            return require(`./images${path}.png`)
+            return require(`../../assets/images${path}.png`)
         }
     }
 

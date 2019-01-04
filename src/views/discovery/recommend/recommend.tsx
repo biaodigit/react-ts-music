@@ -4,10 +4,14 @@ import Scroll from '../../../base/scroll/scroll'
 import Slider from '../../../base/slider/slider'
 import TypeNav from '../../../components/type-nav/type-nav'
 import Panel from '../../../components/panel/panel'
-import List from '../../../components/list/list'
+import ColumnList from '../../../components/column-list/column-list'
 import Toast from '../../../base/toast/toast'
 import {getBanner, getRecSongList, getFineSongList} from '../../../api/discovery'
 import './recommend.scss'
+
+interface PropsType {
+    select: (item: any) => void
+}
 
 interface StateType {
     sliderData: object[],
@@ -16,8 +20,8 @@ interface StateType {
 }
 
 
-class Recommend extends React.Component<any, StateType> {
-    constructor(props: any, state: StateType) {
+class Recommend extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType, state: StateType) {
         super(props)
 
         this.state = {
@@ -49,34 +53,34 @@ class Recommend extends React.Component<any, StateType> {
                     <TypeNav>
                         <div onClick={this.showToast} className="type-nav-item">
                             <div className='img-box'>
-                                <img src={require('../images/private.png')}/>
+                                <img src={require('../../../assets/images/private.png')}/>
                             </div>
                             <span className='text'>私人FM</span>
                         </div>
                         <div onClick={this.showToast} className="type-nav-item">
                             <div className='img-box'>
-                                <img src={require('../images/date.png')}/>
+                                <img src={require('../../../assets/images/date.png')}/>
                             </div>
                             <span className='text'>每日推荐</span>
                         </div>
                         <Link to='/allSongList' className="type-nav-item">
                                 <span className='img-box'>
-                                    <img src={require('../images/songlist.png')}/>
+                                    <img src={require('../../../assets/images/songlist.png')}/>
                                 </span>
                             <span className='text'>歌单</span>
                         </Link>
                         <Link to='/rank' className="type-nav-item">
                             <div className='img-box'>
-                                <img src={require('../images/rank.png')}/>
+                                <img src={require('../../../assets/images/rank.png')}/>
                             </div>
                             <span className='text'>排行榜</span>
                         </Link>
                     </TypeNav>
                     <Panel title={'推荐歌单'} className={'rec-song-list'}>
-                        <List select={(id: number) => this.props.select(id)} data={this.state.listData}/>
+                        <ColumnList select={(item: any) => this.props.select(item)} data={this.state.listData}/>
                     </Panel>
                     <Panel title={'精品歌单'} className={'fine-song-list'}>
-                        <List select={(id: number) => this.props.select(id)} data={this.state.fineSongData}/>
+                        <ColumnList select={(id: number) => this.props.select(id)} data={this.state.fineSongData}/>
                     </Panel>
                 </Scroll>
             </div>
@@ -125,7 +129,7 @@ class Recommend extends React.Component<any, StateType> {
     }
 
     private showToast = () => {
-        Toast.show('功能未开放', 2000)
+        Toast.info('功能未开放', 2000)
     }
 }
 

@@ -2,4 +2,41 @@
 
 .song-list-container {
   @include box-container;
+  .song-list-header {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0;
+    right: 10px;
+    z-index: 999;
+    color: white;
+    .icon-back {
+      padding: 10px;
+      font-size: $font-size-large-x;
+    }
+    .title {
+      flex: 1;
+      line-height: 40px;
+      text-align: center;
+      font-size: $font-size-large;
+    }
+    .player {
+      flex: 0 0 22px;
+      height: 22px;
+    }
+  }
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: blur(50px);
+  }
+  .list-header-container {
+    position: relative;
+    margin-top: 60px;
+  }
 }

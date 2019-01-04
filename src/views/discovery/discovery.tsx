@@ -2,6 +2,7 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import * as footerActions from '../../actions/footer'
+import * as songListAions from '../../actions/song-list'
 import Header from '../../components/header/header'
 import SearchBox from '../../base/searct-box/search-box'
 import Recommend from './recommend/recommend'
@@ -11,6 +12,7 @@ import './discovery.scss'
 
 interface PropsType extends DiscoveryPropsType {
     switchNav: (path: string) => void
+    setSongListId: (id:number) => void
     history: any
 }
 
@@ -42,7 +44,7 @@ class Discovery extends React.Component<PropsType, StateType> {
                     </div>
                     <SearchBox/>
                     <div className='right-container'>
-                        <img src={require('./images/player.png')} className='right-icon'/>
+                        <img src={require('../../assets/images/player.png')} className='right-icon'/>
                     </div>
                 </Header>
                 <div className='nav-container'>
@@ -72,10 +74,11 @@ class Discovery extends React.Component<PropsType, StateType> {
 
     private selectItem = (id: number) => {
         this.props.history.push({pathname: `/songList/${id}`})
+        this.props.setSongListId(id)
     }
 }
 
 export default connect(
     null,
-    (dispatch) => bindActionCreators(footerActions, dispatch)
+    (dispatch) => bindActionCreators({...footerActions,...songListAions}, dispatch)
 )(Discovery);
