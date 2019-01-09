@@ -50,13 +50,32 @@
   background-color: $bgColor;
   padding: $padding;
   margin: $margin;
-  > h4 {
+  font-size: 0;
+  h4 {
     display: inline-block;
     height: $height;
     line-height: $height;
     padding: $txtPadding;
     color: $txtColor;
     font-size: $txtSize;
+  }
+}
+
+@mixin play-count-container() {
+  position: absolute;
+  top: 0.08rem;
+  right: 0.08rem;
+  .play-count-img {
+    width: 0.25rem;
+    height: 0.25rem;
+    margin-right: 0.05rem;
+    vertical-align: middle;
+  }
+  .play-count-num {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: $font-size-small;
+    color: $color-background;
   }
 }
 

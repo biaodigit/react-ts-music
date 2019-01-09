@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getSongListDetail} from "../../api/discovery";
 import {createSongList} from "../../common/ts/list";
 import MusicList from '../../components/music-list/music-list'
+import Loading from '../../base/loading/loading'
 import './song-list.scss'
 
 interface PropsType {
@@ -31,9 +32,13 @@ class SongList extends React.Component<PropsType, StateType> {
     }
 
     public render() {
+        const {loadEnd} = this.state
         return (
             <div className='song-list-container'>
-                <MusicList history={this.props.history} data={this.state.playList}/>
+                {
+                    loadEnd ? <MusicList history={this.props.history} data={this.state.playList}/>
+                        : <Loading/>
+                }
             </div>
         );
     }
@@ -47,7 +52,10 @@ class SongList extends React.Component<PropsType, StateType> {
         getSongListDetail(this.props.songListId).then((res) => {
             if (res.data.code === 200) {
                 this.setState({
-                    playList: createSongList(res.data.playlist)
+                    playList: createSongList(res.data.playlist),
+                    loadEnd: true
+                },() => {
+                    console.log(this.state.playList)
                 })
             }
         })

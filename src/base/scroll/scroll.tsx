@@ -7,6 +7,7 @@ interface PropTypes extends ScrollPropsType {
     children: React.ReactNode
     className?: string
     refreshText?: string
+    onScroll?: (y:number) => void
 }
 
 interface StateType {
@@ -67,18 +68,20 @@ class Scroll extends React.Component<PropTypes, StateType> {
 
     public render() {
         const {beforePullDown, isPullingDown} = this.state;
-        const {refreshText} = this.props
+        const {refreshText,pullDownRefresh} = this.props
         return (
             <div ref={this.scrollContainer} className={['scroll-container', this.props.className].join(' ')}>
                 <div>
-                    <div className='pull-down-container'>
+                    {
+                      pullDownRefresh && <div className='pull-down-container'>
                         {
                             beforePullDown
                                 ? <span>下拉刷新</span>
-                                : isPullingDown ?  <span>正在刷新</span> : <span>{refreshText}</span>
+                                : isPullingDown ? <span>正在刷新</span> : <span>{refreshText}</span>
                         }
 
                     </div>
+                    }
                     {this.props.children}
                 </div>
             </div>
@@ -101,7 +104,9 @@ class Scroll extends React.Component<PropTypes, StateType> {
         }
 
         this.scroll.on('scroll', (pos: any) => {
-            // todo
+            if(this.props.onScroll){
+                this.props.onScroll(pos.y)
+            }
         })
     }
 

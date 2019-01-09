@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
     rootReducer,
-    compose(applyMiddleware(thunk), (window as any).devToolsExtension ? (window as any).devToolsExtension() : '')
+    compose(applyMiddleware(thunk))
 );
 
 ReactDOM.render(

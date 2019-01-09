@@ -26,6 +26,16 @@
   }
 }
 
+@mixin blur-bgImage($width:100%,$height:0,$paddingTop:100%,$blur:50px,$scale:1.4) {
+  width: $width;
+  height: $height;
+  padding-top: $paddingTop;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur($blur);
+  transform: scale($scale);
+}
+
 @mixin text-hidden() {
   overflow: hidden;
   white-space: nowrap;

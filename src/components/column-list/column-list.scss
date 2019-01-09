@@ -27,21 +27,7 @@
         border-radius: 5px;
       }
       .play-count-container {
-        position: absolute;
-        top: 0;
-        right: 0.08rem;
-        .play-count-img {
-          width: 0.25rem;
-          height: 0.25rem;
-          margin-right: 0.05rem;
-          vertical-align: middle;
-        }
-        .play-count-num {
-          display: inline-block;
-          vertical-align: middle;
-          font-size: $font-size-small;
-          color: $color-background;
-        }
+        @include play-count-container;
       }
     }
     .text {

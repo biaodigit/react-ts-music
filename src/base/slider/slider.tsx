@@ -25,7 +25,7 @@ class Slider extends React.Component<PropsType, StateType> {
     private sliderGroup: any;
     private sliderChildren: any[];
     private timer: any;
-    private resizeTimer: any;
+    // private resizeTimer: any;
 
     constructor(props: PropsType, state: StateType) {
         super(props);
@@ -46,20 +46,20 @@ class Slider extends React.Component<PropsType, StateType> {
             this.play()
         }
 
-        window.addEventListener('resize', () => {
-            if (!this.slider || !this.slider.enable) {
-                return
-            }
-
-            clearTimeout(this.resizeTimer);
-            this.resizeTimer = setTimeout(() => {
-                if (!this.slider.isInTransition && this.props.autoPlay) {
-                    this.play()
-                }
-                this.onScrollEnd();
-                this.refresh();
-            }, 60)
-        })
+        // window.addEventListener('resize', () => {
+        //     if (!this.slider || !this.slider.enable) {
+        //         return
+        //     }
+        //
+        //     clearTimeout(this.resizeTimer);
+        //     this.resizeTimer = setTimeout(() => {
+        //         if (!this.slider.isInTransition && this.props.autoPlay) {
+        //             this.play()
+        //         }
+        //         this.onScrollEnd();
+        //         this.refresh();
+        //     }, 60)
+        // })
     }
 
     public shouldComponentUpdate(newProps: PropsType): boolean {
@@ -161,13 +161,13 @@ class Slider extends React.Component<PropsType, StateType> {
         }, this.props.interval)
     };
 
-    private refresh = () => {
-        if (this.slider) {
-            this.setSliderWidth(true);
-            this.play();
-            this.slider.enable()
-        }
-    }
+    // private refresh = () => {
+    //     if (this.slider) {
+    //         this.setSliderWidth(true);
+    //         this.play();
+    //         this.slider.enable()
+    //     }
+    // }
 }
 
 export default Slider

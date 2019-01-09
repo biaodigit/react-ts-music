@@ -1,0 +1,9 @@
+@import "../../common/scss/common";
+
+.loading-container {
+  margin-top: 1rem;
+  text-align: center;
+  .text {
+    font-size: $font-size-medium;
+  }
+}

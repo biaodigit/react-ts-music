@@ -14,9 +14,7 @@ class Panel extends React.Component<PropsType, any> {
     public render() {
         return (
             <div className={this.props.className}>
-                <div className='title'>
-                    <h4>{this.props.title}</h4>
-                </div>
+                <h4>{this.props.title}</h4>
                 {this.props.children}
             </div>
         );
