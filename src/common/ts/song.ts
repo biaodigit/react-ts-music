@@ -36,7 +36,7 @@ export function createSongs(songs: any) {
     return ret
 }
 
-function getSinger(arr: any) {
+function getSinger(arr:any) {
     if (arr.length === 1) {
         return arr[0].name
     }

@@ -92,7 +92,9 @@ class Scroll extends React.Component<PropTypes, StateType> {
         this.scroll = new BScroll(this.scrollContainer.current, {
             click: this.props.click,
             probeType: this.props.probeType,
-            pullDownRefresh: this.props.pullDownRefresh
+            pullDownRefresh: this.props.pullDownRefresh,
+            scrollX: this.props.scrollX,
+            scrollY: this.props.scrollY
         });
 
         if (this.props.pullup) {
@@ -103,11 +105,9 @@ class Scroll extends React.Component<PropTypes, StateType> {
             this.initPullDownRefresh()
         }
 
-        this.scroll.on('scroll', (pos: any) => {
-            if(this.props.onScroll){
-                this.props.onScroll(pos.y)
-            }
-        })
+        if(this.props.listenScroll){
+            this.$_scroll()
+        }
     }
 
     private initPullUpLoad() {
@@ -125,6 +125,14 @@ class Scroll extends React.Component<PropTypes, StateType> {
 
             if (this.props.pullDown) {
                 this.props.pullDown()
+            }
+        })
+    }
+
+    private $_scroll() {
+        this.scroll.on('scroll', (pos: any) => {
+            if(this.props.onScroll){
+                this.props.onScroll(pos.y)
             }
         })
     }
