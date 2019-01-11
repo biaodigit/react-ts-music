@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Scroll from '../../base/scroll/scroll'
+import ListView from '../list-view/list-view'
 import {calCount} from "../../common/ts/util";
 import {prefixStyle} from "../../common/ts/dom";
 import './music-list.scss'
@@ -13,25 +14,25 @@ const minTranslateY = -215;
 const transform = prefixStyle('transform')
 
 class MusicList extends React.Component<PropsType, any> {
-    private headerContainer: any
-    private infoContainer: any
-    private subscriberContainer: any
-    private list: any
+    private readonly headerContainer: any;
+    private readonly infoContainer: any;
+    private readonly subscriberContainer: any;
+    private readonly list: any;
 
     constructor(props: PropsType) {
         super(props);
 
 
-        this.headerContainer = React.createRef()
+        this.headerContainer = React.createRef();
         this.infoContainer = React.createRef();
         this.subscriberContainer = React.createRef();
         this.list = React.createRef()
     }
 
     public componentDidMount() {
-        const headerHeight = this.headerContainer.current.clientHeight
-        const infoHeight = this.infoContainer.current.clientHeight
-        const subHeight = this.subscriberContainer.current.clientHeight
+        const headerHeight = this.headerContainer.current.clientHeight;
+        const infoHeight = this.infoContainer.current.clientHeight;
+        const subHeight = this.subscriberContainer.current.clientHeight;
         this.list.current.scrollContainer.current.style.top = `${headerHeight + infoHeight + subHeight}px`
     }
 
@@ -100,32 +101,15 @@ class MusicList extends React.Component<PropsType, any> {
                 <Scroll listenScroll={true} probeType={3} onScroll={this.onScrollY} ref={this.list} data={data.tracks}
                         pullDownRefresh={false}
                         className={'music-list-content'}>
-                    <ul className='list-detail'>
-                        {
-                            data.tracks.map((item: any, index: number) => (
-                                <li className="list-item" key={index}>
-                                    <div className='rank'>
-                                        <span>{index + 1}</span>
-                                    </div>
-                                    <div className='content border-1px-bottom'>
-                                        <h2 className='name'>{item.name}</h2>
-                                        <p className='desc'>{item.singer} - {item.desc}</p>
-                                    </div>
-                                    <div className='play-video border-1px-bottom'>
-                                        <i className='play icon-play'/>
-                                    </div>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <ListView data={data.tracks}/>
                 </Scroll>
             </div>
         )
     }
 
     private onScrollY = (y: number) => {
-        const minY = Math.max(minTranslateY, y)
-        this.infoContainer.current.style[transform]= `translateY(${minY}px)`
+        const minY = Math.max(minTranslateY, y);
+        this.infoContainer.current.style[transform] = `translateY(${minY}px)`;
         this.subscriberContainer.current.style[transform] = `translateY(${minY}px)`
     }
 
