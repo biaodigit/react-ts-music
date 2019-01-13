@@ -26,9 +26,23 @@ $toastPrefixCls: toast;
       line-height: 0.8rem;
       padding: 0 0.3rem;
     }
+    .#{$toastPrefixCls}-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.3rem 0.4rem;
+      > img {
+        width: 0.48rem;
+        height: 0.48rem;
+      }
+      .content {
+        font-size: $font-size-medium;
+      }
+    }
   }
   &.#{$toastPrefixCls}-mask {
-     background-color: rgba(0,0,0,0.3);
+     background-color: white;
+     z-index: 999;
   }
   .fadeOut {
     animation: fadeOut .3s;

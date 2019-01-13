@@ -44,12 +44,15 @@ const notice = (
             duration,
             mask,
             content: !!iconType ? (
-                    <div/>
-                ) : (
-                    <div className={`${ToastPrefixCls}-info`} role="alert" aria-live="assertive">
-                        <div>{content}</div>
-                    </div>
-                ),
+                <div className={`${ToastPrefixCls}-loading`} role="alert" aria-live="assertive">
+                    <img src={require('../../assets/images/loading.gif')}/>
+                    <span className="content">{content}</span>
+                </div>
+            ) : (
+                <div className={`${ToastPrefixCls}-info`} role="alert" aria-live="assertive">
+                    <div>{content}</div>
+                </div>
+            ),
             onClose() {
                 onClose && onClose();
                 notification.destroy();
@@ -64,8 +67,8 @@ export default {
     info: (text: string, duration?: number, mask?: boolean) => {
         return notice(text, 'info', duration, mask)
     },
-    loading: (text: string, duration?: number, mask?: boolean) => {
-        return notice(text, 'loading', duration, mask)
+    loading: (text: string) => {
+        return notice(text, 'loading', 0, true)
     },
     hide: () => {
         newNotification && newNotification.destroy()

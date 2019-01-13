@@ -1,4 +1,4 @@
-export function calCount(count: number) {
+export function calCount(count = 0) {
     const str: string = count.toFixed(0),
         len: number = str.length,
         units: string[] = ['万', '亿', '兆'];
