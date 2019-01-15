@@ -61,15 +61,3 @@ export function getNewSongs() {
         url: 'personalized/newsong'
     })
 }
-
-/**
- * 歌单详情
- * @param {number} id
- * @returns {AxiosPromise}
- */
-export function getSongListDetail(id: number) {
-    return fetch({
-        method: 'get',
-        url: `playlist/detail?id=${id}`
-    })
-}

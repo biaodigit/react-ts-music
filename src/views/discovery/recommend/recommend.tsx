@@ -77,7 +77,7 @@ class Recommend extends React.Component<PropsType, StateType> {
                         </Link>
                     </TypeNav>
                     <Panel title={'推荐歌单'} className={'rec-song-list'}>
-                        <ColumnList select={(item: any) => this.props.select(item)} data={this.state.listData}/>
+                        <ColumnList select={(id: number) => this.props.select(id)} data={this.state.listData}/>
                     </Panel>
                     <Panel title={'精品歌单'} className={'fine-song-list'}>
                         <ColumnList select={(id: number) => this.props.select(id)} data={this.state.fineSongData}/>
@@ -129,7 +129,7 @@ class Recommend extends React.Component<PropsType, StateType> {
     }
 
     private showToast = () => {
-        Toast.info('功能未开放', 2000)
+        Toast.info('暂未开放功能', 2000)
     }
 }
 

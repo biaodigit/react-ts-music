@@ -1,9 +1,5 @@
 import * as constants from '../constants/index'
-
-export interface SetSongListId {
-    songListId: number
-    type: constants.SONG_LIST_ID
-}
+import {SetSongListId} from './actionsType'
 
 export function setSongListId(songListId: number): SetSongListId {
     return {

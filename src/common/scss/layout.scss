@@ -6,13 +6,13 @@
   flex-wrap: wrap;
 }
 
-@mixin box-container($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem) {
+@mixin box-container($position: fixed, $width: 100%, $top: 0, $left: 0, $bottom: 1rem, $bgColor:$color-background) {
   position: $position;
   width: $width;
   top: $top;
   left: $left;
   bottom: $bottom;
-  background-color: $color-background;
+  background-color: $bgColor;
   font-size: 0;
 }
 

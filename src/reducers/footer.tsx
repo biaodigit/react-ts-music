@@ -1,4 +1,4 @@
-import {SwitchFotNav} from "../actions/footer";
+import {SwitchFotNav} from "../actions/actionsType";
 import {SWITCH_FOOTER_NAV} from "../constants";
 
 export function footerNav(state: string, action: SwitchFotNav): string {

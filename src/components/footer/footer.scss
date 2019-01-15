@@ -8,7 +8,7 @@
   height: 1rem;
   background-color: $color-background;
   @include border-1px-top($position: absolute);
-  z-index: 999;
+  z-index: 998;
   .tab {
     display: flex;
     flex: 1;

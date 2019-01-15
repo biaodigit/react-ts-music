@@ -10,13 +10,14 @@ import Rank from '../views/rank/rank'
 import SongList from '../views/song-list/song-list'
 import Search from '../views/search/search'
 import Footer from '../components/footer/footer';
+import Player from '../components/player/player'
 
 const Routes = () => (
     <div className='App'>
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route path='/discovery' component={Discovery}/>
+                    <Route path='/discovery' exact={true} component={Discovery}/>
                     <Route path='/video' component={Video}/>
                     <Route path='/mine' component={Mine}/>
                     <Route path='/singer' component={Singer}/>
@@ -26,6 +27,7 @@ const Routes = () => (
                     <Route path='/songList/:id' component={SongList}/>
                     <Redirect to='/discovery'/>
                 </Switch>
+                <Player/>
                 <Search/>
                 <Footer/>
             </div>

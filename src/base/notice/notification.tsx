@@ -26,7 +26,6 @@ class Notification extends React.Component<PropsType, StateType> {
     };
 
     static newInstance = (properties: any, callback: (notification:any) => void) => {
-        // region
         const {...props} = properties || {};
 
         let div: any;
@@ -58,7 +57,6 @@ class Notification extends React.Component<PropsType, StateType> {
         }
 
         ReactDOM.render(<Notification {...props} ref={ref}/>, div)
-        // endregion
     };
 
     constructor(props: PropsType, state: StateType) {

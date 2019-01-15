@@ -1,4 +1,5 @@
 import * as React from 'react'
+// import LazyLoad from 'react-lazyload';
 import Scroll from '../../base/scroll/scroll'
 import ListView from '../list-view/list-view'
 import {calCount} from "../../common/ts/util";
@@ -8,6 +9,7 @@ import './music-list.scss'
 interface PropsType {
     history: any
     data: any
+    select: (index:number) => void
 }
 
 const minTranslateY = -215;
@@ -37,7 +39,9 @@ class MusicList extends React.Component<PropsType, any> {
     }
 
     public render() {
-        const {data} = this.props;
+        const {data, select} = this.props;
+        // @ts-ignore
+        // @ts-ignore
         return (
             <div className='music-list-container'>
                 <div ref={this.headerContainer} className='music-list-header'>
@@ -101,7 +105,7 @@ class MusicList extends React.Component<PropsType, any> {
                 <Scroll listenScroll={true} probeType={3} onScroll={this.onScrollY} ref={this.list} data={data.tracks}
                         pullDownRefresh={false}
                         className={'music-list-content'}>
-                    <ListView data={data.tracks}/>
+                    <ListView selectItem={(index:number) => select(index)} data={data.tracks}/>
                 </Scroll>
             </div>
         )

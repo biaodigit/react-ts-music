@@ -1,9 +1,5 @@
 import * as constants from '../constants/index'
-
-export interface SwitchFotNav {
-    text: string
-    type: constants.SWITCH_FOOTER_NAV
-}
+import {SwitchFotNav} from "./actionsType";
 
 export function switchNav(text: string): SwitchFotNav {
     return {

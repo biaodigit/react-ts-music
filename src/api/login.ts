@@ -8,6 +8,11 @@ import fetch from '../utils/fetch'
 export function getLoginMes(phone: number, pwd: string) {
     return fetch({
         method: 'get',
-        url: `/login/cellphone?phone=${phone}&password=${pwd}`
+        url: `/login/cellphone`,
+        params: {
+            phone: phone,
+            password: pwd
+        },
+        withCredentials: true
     })
 }

@@ -1,4 +1,4 @@
-import {ShowSearch} from "../actions/search";
+import {ShowSearch} from "../actions/actionsType";;
 import {SHOW_SEARCH} from "../constants";
 
 export function searchIsShow(state: boolean, action: ShowSearch): boolean {

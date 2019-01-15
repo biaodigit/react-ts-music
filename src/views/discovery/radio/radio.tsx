@@ -6,8 +6,8 @@ class Radio extends React.Component {
     public render() {
         return (
             <div className='radio-container'>
-                <Scroll className={'radio-content'}>
-                    <div>
+                <Scroll pullDownRefresh={false} className={'radio-content'}>
+                    {/*<div>*/}
                         主播电台
                         <p>推荐</p>
                         <p>推荐</p>
@@ -60,7 +60,7 @@ class Radio extends React.Component {
                         <p>推荐</p>
                         <p>推荐</p>
                         <p>推荐</p>
-                    </div>
+                    {/*</div>*/}
                 </Scroll>
             </div>
         )

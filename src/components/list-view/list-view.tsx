@@ -2,20 +2,22 @@ import * as React from 'react';
 import './list-view.scss'
 
 interface PropsType {
-    data:any
+    data: any
+    selectItem: (index: number) => void
 }
 
 class ListView extends React.Component<PropsType, any> {
-    constructor(props:PropsType){
+    constructor(props: PropsType) {
         super(props)
     }
+
     public render() {
-        const {data} = this.props
+        const {data, selectItem} = this.props
         return (
             <ul className='list-detail'>
                 {
-                    data.map((item: any, index: number) => (
-                        <li className="list-item" key={index}>
+                    data && data.length && data.map((item: any, index: number) => (
+                        <li onClick={() => selectItem(index)} className="list-item" key={index}>
                             <div className='rank'>
                                 <span>{index + 1}</span>
                             </div>

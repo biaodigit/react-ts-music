@@ -1,15 +1,18 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {getSongListDetail} from "../../api/discovery";
+import {getSongListDetail} from "../../api/song-list";
 import {createSongList} from "../../common/ts/list";
 import MusicList from '../../components/music-list/music-list'
-import Loading from '../../base/loading/loading'
+import * as playerActions from '../../actions/player'
+import {bindActionCreators} from "redux";
+import {SelectPlay} from "../../actions/actionsType";
 import './song-list.scss'
 
 interface PropsType {
     history: any
     match: any
     songListId: number
+    selectPlay: ({list, index}: SelectPlay) => void
 }
 
 interface StateType {
@@ -32,13 +35,10 @@ class SongList extends React.Component<PropsType, StateType> {
     }
 
     public render() {
-        const {loadEnd} = this.state
         return (
             <div className='song-list-container'>
-                {
-                    loadEnd ? <MusicList history={this.props.history} data={this.state.playList}/>
-                        : <Loading/>
-                }
+                <MusicList select={(index: number) => this.select(index)} history={this.props.history}
+                           data={this.state.playList}/>
             </div>
         );
     }
@@ -54,15 +54,20 @@ class SongList extends React.Component<PropsType, StateType> {
                 this.setState({
                     playList: createSongList(res.data.playlist),
                     loadEnd: true
-                },() => {
+                }, () => {
                     console.log(this.state.playList)
                 })
             }
         })
     }
+
+    private select = (index: number) => {
+        const list = this.state.playList.tracks;
+        this.props.selectPlay({list, index});
+    }
 }
 
 export default connect(
     (state: any) => ({songListId: state.songListId}),
-    null
+    (dispatch) => bindActionCreators(playerActions, dispatch)
 )(SongList);
