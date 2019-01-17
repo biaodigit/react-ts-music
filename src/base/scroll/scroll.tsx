@@ -36,7 +36,7 @@ class Scroll extends React.Component<PropTypes, StateType> {
     };
 
     private scroll: any;
-    private scrollContainer: any;
+    private readonly scrollContainer: any;
 
     constructor(props: PropTypes, state: StateType) {
         super(props);

@@ -4,9 +4,18 @@ import {
     SetPlayList,
     SetCurrentSongIndex,
     SetCurrentSong,
-    SetPlayMode
+    SetPlayMode,
+    SetFullScreen
 } from "../actions/actionsType";
-import {PLAY_LIST, PLAYING, SEQUENCE_LIST, CURRENT_SONG_INDEX, CURRENT_SONG, PLAY_MODE} from "../constants";
+import {
+    PLAY_LIST,
+    PLAYING,
+    SEQUENCE_LIST,
+    CURRENT_SONG_INDEX,
+    CURRENT_SONG,
+    PLAY_MODE,
+    FULL_SCREEN
+} from "../constants";
 import {playMode} from "../common/ts/config";
 
 const initState = {
@@ -15,9 +24,11 @@ const initState = {
     playList: [],
     currentSong: {},
     currentSongIndex: -1,
-    mode: playMode.sequence
+    mode: playMode.sequence,
+    fullScreen: false
 };
 
+// 播放状态
 export function playing(state = initState.playing, action: SetPlayingState): boolean {
     switch (action.type) {
         case PLAYING:
@@ -27,6 +38,7 @@ export function playing(state = initState.playing, action: SetPlayingState): boo
     }
 }
 
+// 序列列表
 export function sequenceList(state = initState.sequenceList, action: SetSequenceList): any {
     switch (action.type) {
         case SEQUENCE_LIST:
@@ -36,6 +48,7 @@ export function sequenceList(state = initState.sequenceList, action: SetSequence
     }
 }
 
+// 播放列表
 export function playList(state = initState.playList, action: SetPlayList): any {
     switch (action.type) {
         case PLAY_LIST:
@@ -45,6 +58,7 @@ export function playList(state = initState.playList, action: SetPlayList): any {
     }
 }
 
+// 当前歌曲
 export function currentSong(state = initState.currentSong, action: SetCurrentSong): any {
     switch (action.type) {
         case CURRENT_SONG:
@@ -54,6 +68,7 @@ export function currentSong(state = initState.currentSong, action: SetCurrentSon
     }
 }
 
+// 当前歌曲在播放列表索引
 export function currentSongIndex(state = initState.currentSongIndex, action: SetCurrentSongIndex): number {
     switch (action.type) {
         case CURRENT_SONG_INDEX:
@@ -63,10 +78,21 @@ export function currentSongIndex(state = initState.currentSongIndex, action: Set
     }
 }
 
+// 播放模式
 export function mode(state = initState.mode, action: SetPlayMode): number {
     switch (action.type) {
         case PLAY_MODE:
             return action.mode;
+        default:
+            return state
+    }
+}
+
+// 播放器全屏
+export function fullScreen(state = initState.fullScreen, action: SetFullScreen): boolean {
+    switch (action.type) {
+        case FULL_SCREEN:
+            return action.fullScreen;
         default:
             return state
     }

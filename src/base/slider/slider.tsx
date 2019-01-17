@@ -20,9 +20,9 @@ class Slider extends React.Component<PropsType, StateType> {
         loop: true
     };
 
+    private readonly sliderContainer: any;
+    private readonly sliderGroup: any;
     private slider: any;
-    private sliderContainer: any;
-    private sliderGroup: any;
     private sliderChildren: any[];
     private timer: any;
     // private resizeTimer: any;

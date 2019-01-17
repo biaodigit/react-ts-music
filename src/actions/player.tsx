@@ -8,7 +8,8 @@ import {
     SetPlayList,
     SetCurrentSong,
     SetCurrentSongIndex,
-    SetPlayMode
+    SetPlayMode,
+    SetFullScreen
 } from "./actionsType";
 
 export function setPlayingState(playing: boolean): SetPlayingState {
@@ -53,6 +54,13 @@ export function setPlayMode(mode: number): SetPlayMode {
     }
 }
 
+export function setFullScreen(fullScreen:boolean):SetFullScreen {
+    return {
+        type: constants.FULL_SCREEN,
+        fullScreen
+    }
+}
+
 export function selectPlay({list, index}: SelectPlay) {
     return (dispatch: any, getState: any) => {
         const {mode} = getState();
@@ -66,6 +74,7 @@ export function selectPlay({list, index}: SelectPlay) {
             dispatch(setPlayList(list))
         }
         dispatch(setSequenceList(list));
-        dispatch(setCurrentSongIndex(index))
+        dispatch(setCurrentSongIndex(index));
+        dispatch(setFullScreen(true))
     }
 }

@@ -1,8 +1,6 @@
 @import "../../common/scss/common";
 
 .player-container {
-  @include box-container($bottom: 0, $bgColor: transparent);
-  z-index: 999;
   .normal-player {
     position: absolute;
     top: 0;
@@ -10,12 +8,132 @@
     width: 100%;
     height: 100%;
     background-color: #222;
+    z-index: 999;
+
     .background {
       position: absolute;
       width: 100%;
       height: 100%;
       filter: blur(20px);
       opacity: 0.6;
+    }
+
+    .player-header {
+      display: flex;
+      margin-bottom: 0.2rem;
+      @include border-1px-bottom($color: rgba(0, 0, 100%, .15));
+
+      .back {
+        flex: 0 0 0.8rem;
+        display: flex;
+        align-items: center;
+
+        .icon-back {
+          display: block;
+          padding: 9px;
+          color: $color-background;
+          font-size: $font-size-large-x;
+        }
+      }
+
+      .title {
+        flex: 1;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 0.1rem;
+        color: $color-background;
+
+        .song {
+          line-height: 0.6rem;
+          font-size: $font-size-medium-x;
+          @include text-hidden
+        }
+
+        .singer {
+          font-size: $font-size-medium;
+          @include text-hidden
+        }
+      }
+
+      .forward {
+        flex: 0 0 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > img {
+          width: 0.4rem;
+          height: 0.4rem;
+        }
+      }
+    }
+
+    .player-middle {
+      position: absolute;
+      top: 50px;
+      bottom: 170px;
+      width: 100%;
+
+      .middle-cd {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .cd-needle {
+          position: absolute;
+          top: -16px;
+          left: 50%;
+          width: 1.8rem;
+          height: 2.8rem;
+          background-image: url("../../assets/images/cd_needle.png");
+          background-size: cover;
+          background-repeat: no-repeat;
+          transform-origin: 40px 25px;
+          transition: all .3s;
+          z-index: 1;
+        }
+
+        .cd-wrapper {
+          position: relative;
+          top: 1rem;
+          width: 80%;
+          height: 0;
+          padding-top: 80%;
+          margin: 0 auto;
+          border-radius: 50%;
+          background-color: rgba(7, 17, 27, 0.1);
+
+          .cd-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 95%;
+            height: 95%;
+            transform: translate3d(-50%, -50%, 0);
+            background-image: url("../../assets/images/cd_wrapper.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            .image {
+              position: absolute;
+              width: 70%;
+              height: 70%;
+              top: 50%;
+              left: 50%;
+              border-radius: 50%;
+              transform: translate3d(-50%, -50%, 0);
+            }
+          }
+        }
+
+        &.pause {
+          .cd-needle {
+            top: -28px;
+            transform: translateX(3px) rotate(-30deg);
+          }
+        }
+      }
     }
   }
 }

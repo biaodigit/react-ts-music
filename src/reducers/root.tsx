@@ -2,7 +2,7 @@ import {combineReducers} from "redux";
 import {searchIsShow} from "./search";
 import {footerNav} from "./footer";
 import {songListId} from "./song-list"
-import {playing, sequenceList, playList, currentSong, currentSongIndex,mode} from "./player";
+import {playing, sequenceList, playList, currentSong, currentSongIndex, mode, fullScreen} from "./player";
 
 export default combineReducers({
     footerNav,
@@ -13,5 +13,6 @@ export default combineReducers({
     playList,
     currentSong,
     currentSongIndex,
-    mode
+    mode,
+    fullScreen
 })

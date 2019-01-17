@@ -33,3 +33,7 @@ export type CURRENT_SONG_INDEX = typeof CURRENT_SONG_INDEX;
 // 播放模式
 export const PLAY_MODE = 'PLAY_MODE';
 export type PLAY_MODE = typeof PLAY_MODE;
+
+// 全屏状态
+export const FULL_SCREEN = 'FULL_SCREEN';
+export type FULL_SCREEN = typeof FULL_SCREEN
