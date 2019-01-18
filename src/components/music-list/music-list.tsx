@@ -1,7 +1,10 @@
 import * as React from 'react'
-// import LazyLoad from 'react-lazyload';
-import Scroll from '../../base/scroll/scroll'
-import ListView from '../list-view/list-view'
+import {connect} from 'react-redux'
+import {bindActionCreators} from "redux";
+import * as playerActions from "../../actions/player";
+import Scroll from '../../base/scroll/scroll';
+import Toast from '../../base/toast/toast'
+import ListView from '../list-view/list-view';
 import {calCount} from "../../common/ts/util";
 import {prefixStyle} from "../../common/ts/dom";
 import './music-list.scss'
@@ -9,17 +12,19 @@ import './music-list.scss'
 interface PropsType {
     history: any
     data: any
-    select: (index:number) => void
+    playList: object[]
+    select: (index: number) => void
+    setFullScreen: (full: boolean) => void
 }
 
-const minTranslateY = -215;
-const transform = prefixStyle('transform')
+const transform = prefixStyle('transform');
 
 class MusicList extends React.Component<PropsType, any> {
     private readonly headerContainer: any;
     private readonly infoContainer: any;
     private readonly subscriberContainer: any;
     private readonly list: any;
+    private minTranslateY: number;
 
     constructor(props: PropsType) {
         super(props);
@@ -29,6 +34,10 @@ class MusicList extends React.Component<PropsType, any> {
         this.infoContainer = React.createRef();
         this.subscriberContainer = React.createRef();
         this.list = React.createRef()
+
+        this.state = {
+            title: '歌单'
+        }
     }
 
     public componentDidMount() {
@@ -36,18 +45,18 @@ class MusicList extends React.Component<PropsType, any> {
         const infoHeight = this.infoContainer.current.clientHeight;
         const subHeight = this.subscriberContainer.current.clientHeight;
         this.list.current.scrollContainer.current.style.top = `${headerHeight + infoHeight + subHeight}px`
+        this.minTranslateY = -infoHeight
     }
 
     public render() {
+        const {title} = this.state;
         const {data, select} = this.props;
-        // @ts-ignore
-        // @ts-ignore
         return (
             <div className='music-list-container'>
                 <div ref={this.headerContainer} className='music-list-header'>
                     <i onClick={() => this.props.history.goBack()} className="icon-back"/>
-                    <h3 className='title'>歌单</h3>
-                    <img className='player' src={require('../../assets/images/player.png')}/>
+                    <h3 className='title'>{title}</h3>
+                    <img onClick={this.openPlayer} className='player' src={require('../../assets/images/player.png')}/>
                 </div>
                 <div className='head-blur-bgImage'>
                     <div className='bgImage' style={{backgroundImage: `url(${data.coverImg}?param=100y100)`}}/>
@@ -98,21 +107,31 @@ class MusicList extends React.Component<PropsType, any> {
                     </div>
                     <div className='subscriber-container'>
                         <i className='icon-delete'/>
-                        <span
-                            className='collect'>收藏({this.calCollectCount(data.subscribedCount)})</span>
+                        <span className='collect'>收藏({this.calCollectCount(data.subscribedCount)})</span>
                     </div>
                 </div>
                 <Scroll listenScroll={true} probeType={3} onScroll={this.onScrollY} ref={this.list} data={data.tracks}
                         pullDownRefresh={false}
                         className={'music-list-content'}>
-                    <ListView selectItem={(index:number) => select(index)} data={data.tracks}/>
+                    <ListView selectItem={(index: number) => select(index)} data={data.tracks}/>
                 </Scroll>
             </div>
         )
     }
 
-    private onScrollY = (y: number) => {
-        const minY = Math.max(minTranslateY, y);
+    private onScrollY = (pos: any) => {
+        const {title} = this.state;
+        const {name} = this.props.data
+        let minY = Math.max(this.minTranslateY, pos.y);
+        if (minY === this.minTranslateY && title === '歌单') {
+            this.setState({
+                title: name
+            })
+        } else if (minY > this.minTranslateY && title === name) {
+            this.setState({
+                title: '歌单'
+            })
+        }
         this.infoContainer.current.style[transform] = `translateY(${minY}px)`;
         this.subscriberContainer.current.style[transform] = `translateY(${minY}px)`
     }
@@ -121,7 +140,19 @@ class MusicList extends React.Component<PropsType, any> {
         return (count + '').length > 5 ? calCount(count) : count
     }
 
+    private openPlayer = () => {
+        const {playList, setFullScreen} = this.props;
+        if (!playList.length) {
+            Toast.info('点首歌吧～');
+            return
+        }
+        setFullScreen(true)
+    }
+
 
 }
 
-export default MusicList
+export default connect(
+    (state: any) => ({playList: state.playList}),
+    (dispatch) => bindActionCreators(playerActions, dispatch)
+)(MusicList)

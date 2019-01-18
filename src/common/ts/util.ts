@@ -39,3 +39,28 @@ export function findIndex(list: object[], song: any) {
 function randomNum(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min)
 }
+
+
+export function throttle(fn: any, threshhold = 250) {
+    let last: number,
+        deferTime: any;
+
+    return function () {
+        // @ts-ignore
+        let context = this;
+
+        let now = +new Date,
+            args = arguments;
+
+        if (last && now < last + threshhold) {
+            clearTimeout(deferTime)
+            deferTime = setTimeout(() => {
+                last = now;
+                fn.apply(context, args)
+            }, threshhold)
+        } else {
+            last = now
+            fn.apply(context, args)
+        }
+    }
+}

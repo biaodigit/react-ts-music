@@ -8,8 +8,8 @@
     align-items: center;
     left: 0;
     right: 0;
-    color: white;
     height: 42px;
+    color: $color-background;
 
     .icon-back {
       padding: 0.2rem;
@@ -23,7 +23,9 @@
       text-align: center;
       font-size: $font-size-large;
       z-index: 100;
+      @include text-hidden;
     }
+
 
     .player {
       flex: 0 0 0.44rem;
@@ -40,7 +42,7 @@
     width: 100%;
     height: 42px;
     overflow: hidden;
-    z-index: 10;
+    z-index: -1;
 
     .bgImage {
       @include blur-bgImage($paddingTop: 60%, $blur: 15px);
@@ -53,6 +55,7 @@
   .music-list-info {
     position: relative;
     padding: 0.4rem 0 0.3rem;
+    z-index: -10;
 
     .bg-image {
       position: absolute;
@@ -206,56 +209,6 @@
     top: 0;
     bottom: 1rem;
     width: 100%;
-
-    .list-detail {
-      .list-item {
-        display: flex;
-        padding-left: 0.2rem;
-
-        .rank {
-          display: flex;
-          flex: 0 0 0.5rem;
-          width: 0.5rem;
-          margin-right: 0.2rem;
-          align-items: center;
-          justify-content: center;
-          font-size: $font-size-medium-x;
-        }
-
-        .content {
-          flex: 1 1 auto;
-          padding: 0.2rem 0;
-          @include border-1px-bottom;
-          @include text-hidden;
-
-          .name {
-            margin-bottom: 0.2rem;
-            line-height: 0.4rem;
-            font-size: $font-size-medium-x;
-            @include text-hidden;
-          }
-
-          .desc {
-            font-size: $font-size-small-s;
-            @include text-hidden
-          }
-        }
-
-        .play-video {
-          flex: 0 0 0.7rem;
-          display: flex;
-          align-items: center;
-          text-align: center;
-          @include border-1px-bottom;
-
-          .play {
-            font-size: $font-size-medium-x;
-            color: rgba(7, 17, 27, 0.6);
-          }
-        }
-      }
-    }
+    z-index: -10;
   }
-
-  //}
 }

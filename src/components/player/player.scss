@@ -2,7 +2,7 @@
 
 .player-container {
   .normal-player {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -129,8 +129,8 @@
 
         &.pause {
           .cd-needle {
-            top: -28px;
-            transform: translateX(3px) rotate(-30deg);
+            top: -28.9px;
+            transform: translateX(2.1px) rotate(-30deg);
           }
         }
       }

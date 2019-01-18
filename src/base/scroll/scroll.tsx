@@ -7,7 +7,7 @@ interface PropTypes extends ScrollPropsType {
     children: React.ReactNode
     className?: string
     refreshText?: string
-    onScroll?: (y:number) => void
+    onScroll?: (y: number) => void
 }
 
 interface StateType {
@@ -57,8 +57,8 @@ class Scroll extends React.Component<PropTypes, StateType> {
         }, 20)
     }
 
-    public shouldComponentUpdate(newProps: any, newState: any): boolean {
-        if (newProps) {
+    public shouldComponentUpdate(nextProps: Readonly<PropTypes>, nextState: Readonly<StateType>, nextContext: any): boolean {
+        if (nextProps.pullDownRefresh) {
             setTimeout(() => {
                 this._forceUpdate()
             }, this.props.refreshDelay)
@@ -68,19 +68,19 @@ class Scroll extends React.Component<PropTypes, StateType> {
 
     public render() {
         const {beforePullDown, isPullingDown} = this.state;
-        const {refreshText,pullDownRefresh} = this.props
+        const {refreshText, pullDownRefresh} = this.props
         return (
             <div ref={this.scrollContainer} className={['scroll-container', this.props.className].join(' ')}>
                 <div>
                     {
-                      pullDownRefresh && <div className='pull-down-container'>
-                        {
-                            beforePullDown
-                                ? <span>下拉刷新</span>
-                                : isPullingDown ? <span>正在刷新</span> : <span>{refreshText}</span>
-                        }
+                        pullDownRefresh && <div className='pull-down-container'>
+                            {
+                                beforePullDown
+                                    ? <span>下拉刷新</span>
+                                    : isPullingDown ? <span>正在刷新</span> : <span>{refreshText}</span>
+                            }
 
-                    </div>
+                        </div>
                     }
                     {this.props.children}
                 </div>
@@ -105,7 +105,7 @@ class Scroll extends React.Component<PropTypes, StateType> {
             this.initPullDownRefresh()
         }
 
-        if(this.props.listenScroll){
+        if (this.props.listenScroll) {
             this.$_scroll()
         }
     }
@@ -131,8 +131,8 @@ class Scroll extends React.Component<PropTypes, StateType> {
 
     private $_scroll() {
         this.scroll.on('scroll', (pos: any) => {
-            if(this.props.onScroll){
-                this.props.onScroll(pos.y)
+            if (this.props.onScroll) {
+                this.props.onScroll(pos)
             }
         })
     }
