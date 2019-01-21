@@ -89,7 +89,7 @@
           background-image: url("../../assets/images/cd_needle.png");
           background-size: cover;
           background-repeat: no-repeat;
-          transform-origin: 40px 25px;
+          transform-origin: 16px 16px;
           transition: all .3s;
           z-index: 1;
         }
@@ -97,9 +97,9 @@
         .cd-wrapper {
           position: relative;
           top: 1rem;
-          width: 80%;
+          width: 75%;
           height: 0;
-          padding-top: 80%;
+          padding-top: 75%;
           margin: 0 auto;
           border-radius: 50%;
           background-color: rgba(7, 17, 27, 0.1);
@@ -129,8 +129,7 @@
 
         &.pause {
           .cd-needle {
-            top: -28.9px;
-            transform: translateX(2.1px) rotate(-30deg);
+            transform: rotate(-30deg);
           }
         }
       }

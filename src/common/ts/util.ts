@@ -30,7 +30,7 @@ export function shuffle(arr: object[]): object[] {
     return list
 }
 
-export function findIndex(list: object[], song: any) {
+export function findIndex(list: object[], song: any):number {
     return list.findIndex((item: any) => {
         return item.id === song.id
     })

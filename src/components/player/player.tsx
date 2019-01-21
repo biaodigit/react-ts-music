@@ -32,6 +32,7 @@ class Player extends React.Component<PropsType, StateType> {
     public shouldComponentUpdate(nextProps: Readonly<PropsType>, nextState: Readonly<StateType>, nextContext: any): boolean {
         return true
     }
+
     public componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<StateType>, snapshot?: any): void {
         if(prevProps.currentSong.id && this.props.currentSong.id === prevProps.currentSong.id){
             return
@@ -73,6 +74,10 @@ class Player extends React.Component<PropsType, StateType> {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className='player-bottom'>
+                        <div className='progress-wrapper'/>
+                        <div className='handle-wrapper'/>
                     </div>
                 </div>
                 <audio ref={this.audio}/>
