@@ -7,6 +7,7 @@ interface SongType {
     singer: string
     desc: string
     image: string
+    duration: number
 }
 
 export default class Song {
@@ -17,13 +18,15 @@ export default class Song {
     public image: string;
     public url: string;
     public lyric: string;
+    public duration: number
 
-    constructor({id, name, singer, desc, image}: SongType) {
+    constructor({id, name, singer, desc, image, duration}: SongType) {
         this.id = id;
         this.name = name;
         this.singer = singer;
         this.desc = desc;
         this.image = image;
+        this.duration = duration;
         this.url = `https://music.163.com/song/media/outer/url?id=${this.id}.mp3`
     }
 
@@ -45,7 +48,8 @@ export function createSong(song: any) {
         name: song.name,
         singer: getSinger(song.ar),
         desc: song.al.name,
-        image: song.al.picUrl
+        image: song.al.picUrl,
+        duration: song.dt / 1000
     })
 }
 

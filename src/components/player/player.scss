@@ -115,6 +115,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             overflow: hidden;
+
             .image {
               position: absolute;
               width: 70%;
@@ -131,6 +132,41 @@
           .cd-needle {
             transform: rotate(-30deg);
           }
+        }
+      }
+    }
+
+    .player-bottom {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      font-size: 0;
+
+      .progress-wrapper {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        padding: 0.2rem 0;
+
+        .time {
+          flex: 0 0 30px;
+          width: 30px;
+          line-height: 30px;
+          color: $color-background;
+          font-size: $font-size-small;
+
+          &.time-l {
+            text-align: left;
+          }
+
+          &.time-r {
+            text-align: right;
+          }
+        }
+
+        .progress-bar-wrapper {
+          flex: 1;
         }
       }
     }
