@@ -4,6 +4,8 @@ import './progress-bar.scss'
 
 interface PropsType {
     percent: number
+    percentChanging: (percent: number) => void
+    percentChange: (percent: number) => void
 }
 
 const progressBtnWidth = 16;
@@ -21,6 +23,13 @@ class ProgressBar extends React.Component<PropsType, any> {
         this.progressBar = React.createRef();
         this.progress = React.createRef();
         this.progressBtn = React.createRef()
+    }
+
+    public shouldComponentUpdate(nextProps: Readonly<PropsType>, nextState: Readonly<any>, nextContext: any): boolean {
+        if (nextProps.percent >= 0 && !this.touch.initiated) {
+            this.setProgressOffset(nextProps.percent)
+        }
+        return true
     }
 
     public componentWillMount() {
@@ -54,16 +63,25 @@ class ProgressBar extends React.Component<PropsType, any> {
         let progressBarWidth = this.progressBar.current.clientWidth - progressBtnWidth;
         let progressWidth = this.touch.progressWidth + moveWidth;
         let offsetWidth = Math.max(0, Math.min(progressWidth, progressBarWidth));
-        this.offset(offsetWidth)
+        this.offset(offsetWidth);
+        this.props.percentChanging(this.getPercent())
     };
 
     private touchEnd = () => {
-
+        this.touch.initiated = false;
+        this.props.percentChange(this.getPercent())
     };
 
-    // private getPercent = () => {
-    //
-    // }
+    private setProgressOffset = (percent: number) => {
+        let barWidth = this.progressBar.current.clientWidth - progressBtnWidth;
+        let offsetWidth = barWidth * percent;
+        this.offset(offsetWidth)
+    };
+
+    private getPercent = () => {
+        let progressBarWidth = this.progressBar.current.clientWidth - progressBtnWidth;
+        return this.progress.current.clientWidth / progressBarWidth
+    };
 
     private offset = (width: number) => {
         this.progress.current.style.width = `${width}px`;

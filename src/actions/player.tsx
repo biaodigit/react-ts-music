@@ -12,7 +12,7 @@ import {
     SetFullScreen
 } from "./actionsType";
 
-export function setPlayingState(playing: boolean): SetPlayingState {
+export function setPlaying(playing: boolean): SetPlayingState {
     return {
         type: constants.PLAYING,
         playing
@@ -65,7 +65,7 @@ export function selectPlay({list, index}: SelectPlay) {
     return (dispatch: any, getState: any) => {
         const {mode} = getState();
         dispatch(setCurrentSong(list[index]));
-        dispatch(setPlayingState(true));
+        dispatch(setPlaying(true));
         if (mode === playMode.random) {
             let randomList = shuffle(list);
             index = findIndex(randomList, list[index]);

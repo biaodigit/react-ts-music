@@ -169,6 +169,31 @@
           flex: 1;
         }
       }
+
+      .handle-wrapper {
+        display: flex;
+        align-items: center;
+        .icon {
+          flex: 1;
+          color: $color-background;
+          > i {
+            font-size: 0.6rem;
+          }
+        }
+        .left {
+          text-align: right;
+        }
+        .center {
+          padding: 0 0.4rem;
+          text-align: center;
+          > i {
+            font-size: 0.8rem;
+          }
+        }
+        .right {
+          text-align: left;
+        }
+      }
     }
   }
 }
